@@ -1,11 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets-v2/g-medcins.css">
     <title>Document</title>
 </head>
+
 <body>
-    
+
+    <section id="medecinsList">
+        <div class="topContainer">
+            <div class="listTitle">
+                <p> Liste des médecins</p>
+            </div>
+            <button id="ajouterDoc">ajouter un médecin</button>
+        </div>
+        <di>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Spécialité</th>
+                        <th>Disponible aujourd’hui</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody id="medecinsTbody">
+
+                </tbody>
+            </table>
+        </di>
+    </section>
+    <script src="../public/asset/Doctors.json"></script>
+    <script src="../scripts-v2/g-medcins.js"></script>
 </body>
+
 </html>
