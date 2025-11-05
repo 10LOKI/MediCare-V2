@@ -6,34 +6,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets-v2/g-medcins.css">
     <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 
 <body>
-
-    <section id="medecinsList">
-        <div class="topContainer">
-            <div class="listTitle">
-                <p> Liste des médecins</p>
+    <section class="bg-gray-900 w-[100vw] h-[100vh] flex">
+        <div class="bg-slate-100 grid grid-flow-col grid-rows-6 w-[300px] h-full px-4 ">
+            <a class="row-span-1 w-full h-full h-fit flex justify-center items-center" href="index.html">
+                <div class="text-gray-900 text-xl font-bold">MED <span class="font-bold text-blue-500">Care+</span>
+                </div>
+            </a>
+            <nav class="row-start-2 row-end-5 grid grid-rows-5">
+                <div
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-dashboard-horizontal-fill  mx-7"></i> Dashboard
+                </div>
+                <div
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-medicine-bottle-fill mx-7"></i> Medecins
+                </div>
+                <div
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-test-tube-fill mx-7"></i> Specialité
+                </div>
+                <div
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-pulse-fill hover:ri-pulse-fill mx-7"></i> Disponibilité
+                </div>
+                <div
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-calendar-fill mx-7"></i> Rendez-vous
+                </div>
+            </nav>
+            <div
+                class="relative top-10 row-start-6 row-end-7 flex text-gray-900  items-center hover:text-blue-500 cursor-pointer w-fit h-fit transition bltext-blue-500 cursor-pointer5 duration-300">
+                <i class="ri-logout-circle-r-line text-3xl "></i>
+                Log Out
             </div>
-            <button id="ajouterDoc">ajouter un médecin</button>
         </div>
-        <di>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Spécialité</th>
-                        <th>Disponible aujourd’hui</th>
-                        <th></th>
-                    </tr>
-                </thead>
+        <div id="bodySec" class="flex justify-center items-center w-full h-full bg-white">
 
-                <tbody id="medecinsTbody">
+            <section id="medecinsList">
+                <div class="flex justify-between">
+                    <h3 class="text-base text-white-900 dark:text-white"> Liste des médecins</h3>
+                    <button id="ajouterDoc" type="button"
+                        class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                        ajouter un médecin</button>
+                </div>
+                <div>
+                    <table
+                        class="min-w-full text-sm text-left text-gray-500 border border-gray-200 border-collapse  m-4">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                            <tr>
+                                <th class="border border-gray-300 p-2 text-center">Nom</th>
+                                <th class="border border-gray-300 p-2 text-center">Spécialité</th>
+                                <th class="border border-gray-300 p-2 text-center">Disponible aujourd’hui</th>
+                                <th class="border border-gray-300 p-2 text-center"></th>
+                            </tr>
+                        </thead>
 
-                </tbody>
-            </table>
-        </di>
+                        <tbody id="medecinsTbody">
+
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+
+        </div>
     </section>
+    <div id="ajouterModel">
+        <div>
+            <h2>Ajouter un médecin</h2>
+            <form class="max-w-md mx-auto">
+                <div class="relative z-0 w-full mb-5 group">
+                    <input type="text" id="nameInpute" class="block py-2.5 px-0 w-full text-sm
+                         text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none
+                          dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none 
+                          focus:ring-0 focus:border-blue-600 peer" placeholder=" " required>
+                    <label class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 
+                        duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 
+                        rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600
+                         peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 
+                         peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                        Nom </label>
+                </div>
+                <div>
+                    <input type="text" id="specInpute" required>
+                    <label>Spécialité :</label>
+                </div>
+
+                <label>Disponibilité :</label>
+                <select id="dispoInpute">
+                    <option value="dispo">Disponible</option>
+                    <option value="nonDispo">Non disponible</option>
+                </select>
+            </form>
+        </div>
+    </div>
+
     <script src="../public/asset/Doctors.json"></script>
     <script src="../scripts-v2/g-medcins.js"></script>
 </body>
