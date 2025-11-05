@@ -63,7 +63,58 @@
                 Log Out
             </div>
         </div>
-       
+        <div id="bodySec" class="flex justify-center items-center w-full h-full ">
+            <div
+                class="bg-white h-[90%] w-[90%] rounded-lg shadow-sm grid grid-rows-5 justify-items-center content-center">
+                <div id="container"
+                    class="  grid grid-cols-1 row-start-1 row-end-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 scroll-smooth gap-20 max-w-[90%] h-[100%] relative justify-items-center items-center p-10 overflow-hidden">
+                </div>
+                <!-- <div
+                    class="h-full w-full row-start-4 row-end-6 bg-gray-500 rounded-b-lg flex justify-center items-center">
+                    <div class="bg-white h-[80%] w-[90%] rounded-lg "></div>
+
+                </div> -->
+            </div>
+        </div>
+    </section>
+    <script>
+        const container = document.getElementById('container')
+        fetch('../public/asset/Doctors.json')
+            .then((response) => response.json())
+            .then(data => {
+                let doctors = data.doctors
+                doctors.forEach(doc => {
+                    const cardDiv = document.createElement('div')
+                    cardDiv.className = ('bg-gray-900 shadow-lg w-[200px] h-[250px] grid  content-center rounded-3xl hover:scale-105 transition-transform duration-300 px-2')
+                    const cardDivInside = document.createElement('div')
+                    cardDivInside.className = ('w-[100%] flex justify-center')
+                    const cardDivInsideTwo = document.createElement('div')
+                    cardDivInsideTwo.className = ('w-[100%] p-4 relative grid justify-center ')
+                    const cardImg = document.createElement('img')
+                    cardImg.className = ('bg-cover bg-center w-[80%] h-[100%] rounded-lg relative bottom-5 ')
+                    cardImg.src = doc.image
+                    cardImg.alt = doc.name
+                    const cardH2 = document.createElement('h2')
+                    cardH2.className = ('font-bold text-sm text-blue-500')
+                    cardH2.textContent = doc.name
+                    const cardP = document.createElement('select')
+                    cardP.className = ('  px-3')
+                    const cardOp = document.createElement('option')
+                    cardP.className = ('text-black')
+                    cardOp.textContent = doc.specialty
+                    cardOp.className = ('text-blue-500 px-3')
+                    cardDiv.appendChild(cardDivInside)
+                    cardDiv.appendChild(cardDivInsideTwo)
+                    cardDivInside.appendChild(cardImg)
+                    cardDivInsideTwo.appendChild(cardH2)
+                    cardDivInsideTwo.appendChild(cardP)
+                    cardP.appendChild(cardOp)
+                    container.appendChild(cardDiv)
+
+
+                });
+            })
+    </script>
 </body>
 
 </html>
