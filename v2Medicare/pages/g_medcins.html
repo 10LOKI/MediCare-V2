@@ -44,19 +44,20 @@
                 Log Out
             </div>
         </div>
-        <div id="bodySec" class="flex justify-center items-center w-full h-full bg-white">
+        <div id="bodySec" class="flex justify-center items-start w-full bg-white h-full p-6 overflow-auto">
 
-            <section id="medecinsList">
-                <div class="flex justify-between">
+            <section id="medecins" class="bg-gray-50 rounded-lg shadow-md p-6 w-[80%] max-w-5xl">
+                <div class="flex justify-between items-center mb-4">
                     <h3 class="text-base text-white-900 dark:text-white"> Liste des médecins</h3>
                     <button id="ajouterDoc" type="button"
-                        class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                        class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 
+                focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                         ajouter un médecin</button>
                 </div>
                 <div>
                     <table
-                        class="min-w-full text-sm text-left text-gray-500 border border-gray-200 border-collapse  m-4">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                        class=" w-full border border-gray-200 border-collapse text-center">
+                        <thead class="bg-gray-100 text-gray-700 uppercase">
                             <tr>
                                 <th class="border border-gray-300 p-2 text-center">Nom</th>
                                 <th class="border border-gray-300 p-2 text-center">Spécialité</th>
@@ -75,7 +76,7 @@
 
         </div>
     </section>
-    <div id="ajouterModel" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div id="ajouterModel" class="fixed inset-0  items-center justify-center bg-black bg-opacity-50 hidden">
         <form class="max-w-md mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-300 shadow-lg">
             <div class="p-6">
 

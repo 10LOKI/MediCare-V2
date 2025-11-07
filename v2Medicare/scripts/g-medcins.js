@@ -17,13 +17,13 @@ fetch("../scripts/Doctors-v2.json")
         }
         else {
             console.log("localestorage fih data")
-          
+
         }
 
         displayDoctors()
     })
 
-   function displayDoctors() {
+function displayDoctors() {
     console.log("=== Appel de displayDoctors() ===");
 
     let tbody = document.getElementById("medecinsTbody");
@@ -35,7 +35,7 @@ fetch("../scripts/Doctors-v2.json")
     tbody.innerHTML = "";
     console.log("tbody khawia",);
 
-    for(let i=0; i<doctors.length; i++){
+    for (let i = 0; i < doctors.length; i++) {
         let doc = doctors[i];
         console.log("hna traitement 3la kol medecin", i, doc);
 
@@ -95,11 +95,21 @@ annulerButtonMedecin.addEventListener("click", () => ajouterFormMedecin.classLis
 //==>ajoute buttone dans le forme pour transfere data ver localStorage<==//
 ajouterFormButton.addEventListener("click", function () {
 
-    //////////nou recuperons les donnes saisie par la secrutaire
-    const nameInpute = document.getElementById("nameInpute").value;
-    const specInpute = document.getElementById("specInpute").value;
-    const inputPhoto = document.getElementById("inputPhoto").value;
-    const discriptionInput = document.getElementById("discriptionInput").value;
+    //////////nous recuperons les donnes saisie par la secrutaire
+    const nameInpute = document.getElementById("nameInpute");
+    const specInpute = document.getElementById("specInpute");
+    const inputPhoto = document.getElementById("inputPhoto");
+    const discriptionInput = document.getElementById("discriptionInput");
+    /////////nakhdo l value dyal input 
+    const nameValue = nameInpute.value.trim();
+    const specValue = specInpute.value.trim();
+    const photoValue = inputPhoto.value.trim();
+    const discriptionValue = discriptionInput.value.trim();
+    ////////namevalue w specvalue is required
+    if (!nameValue || !specValue) {
+        alert("Veuillez remplir au moins le nom et la spécialité !");
+        return;
+    }
 
     ////////////// njibo data mn localeStorage
     let doctors = JSON.parse(localStorage.getItem("doctors")) || [];
@@ -108,10 +118,10 @@ ajouterFormButton.addEventListener("click", function () {
     ///////////// nsawbo l objets dyal new doctors
     const newDoctor = {
         id: newId,
-        name: nameInpute,
-        specialty: specInpute,
-        photo: inputPhoto,
-        description: discriptionInput,
+        name: nameValue,
+        specialty: specValue,
+        photo: photoValue,
+        description: discriptionValue,
         availabilityText: "Non Disponible" // valeur par défaut
     };
     //////////npuchi lel array dyal doctor
@@ -121,13 +131,12 @@ ajouterFormButton.addEventListener("click", function () {
     ///////n3awdo n affichiw localStorage
     displayDoctors();
     //////nkhwiw lform wen7aydo affichage dyalha
-    document.getElementById("nameInput").value = "";
-    document.getElementById("specInpute").value = "";
-    document.getElementById("inputPhoto").value = "";
-    document.getElementById("discriptionInput").value = "";
+    nameInpute.value = "";
+    specInpute.value = "";
+    inputPhoto.value = "";
+    discriptionInput.value = "";
 
     ajouterFormMedecin.classList.add("hidden");
-
     console.log(doctors.doctors);
 })
 
