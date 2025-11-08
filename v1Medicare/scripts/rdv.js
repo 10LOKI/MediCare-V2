@@ -92,6 +92,7 @@ const dateInput = document.getElementById('date');
             if (!isFormValid) {
                 return;
             }
+            // thi is me
             const formData = {
                 id: Date.now(),
                 fullName: document.getElementById('fullName').value.trim(),
