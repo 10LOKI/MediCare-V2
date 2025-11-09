@@ -175,10 +175,11 @@ function showModal() {
     const modalContent = document.getElementById('modalContent');
 
     modal.classList.remove('hidden');
+    modal.style.cursor = 'pointer';
     setTimeout(() => {
         modalContent.style.transform = 'scale(1)';
         modalContent.style.opacity = '1';
-    }, 10);
+    }, 1000);
 }
 function closeModal() {
     const modal = document.getElementById('successModal');
@@ -204,24 +205,42 @@ let list_Rendez_Vous = document.querySelector("#tbody")
 
 // const wizards = ['Hermione', 'Neville', 'Gandalf'];
 // const app = document.querySelector('#app');
-// app.innerHTML = '<ul>' + wizards.map(wizard => `<li>${wizard}</li>`).join('') + '</ul>';
+// list_Rendez_Vous.innerHTML = '<tr>' + arr.map(item => `<td>${values}</td>`).join('') + '</tr>';
+
 
 function listRendezVous() {
-    let tr = document.createElement('tr')
-
+    list_Rendez_Vous.innerHTML = `
+    '<tr class="border-b border-gray-200 dark:border-gray-700">' + arr.map(item => ' + ' <td class="px-6 py-4">${values}</td>).join('')/' + '</tr>'`;
 }
 
+
+function refuseAppointment(id) {
+    if (confirm('Êtes-vous sûr reject cette rendez-vous ?')) {
+        let appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+        appointments = appointments.filter(apt => apt.id !== id);
+        localStorage.setItem('appointments', JSON.stringify(appointments));
+        displayAppointments();
+    }
+}
+function acceptAppointment(id) {
+    if (confirm('Êtes-vous sûr accept cette rendez-vous ?')) {
+        let appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+        appointments = appointments.filter(apt => apt.id !== id);
+        localStorage.setItem('appointments', JSON.stringify(appointments));
+        displayAppointments();
+    }
+}
 // if (localStorage.email == null) {
 //     localStorage.setItem("email", "hey@email.com")
 //     localStorage.setItem("pass", "12345")
 // }
 
-let logOut = document.querySelector(".logOut").addEventListener('click', () => {
-    localStorage.removeItem("email")
-    localStorage.removeItem("pass")
-    localStorage.removeItem("loginIs")
-    location.href = '../../../v3Medicare/pages/loginPage.html';
-})
+// let logOut = document.querySelector(".logOut").addEventListener('click', () => {
+//     localStorage.removeItem("email")
+//     localStorage.removeItem("pass")
+//     localStorage.removeItem("loginIs")
+//     location.href = '../../../v3Medicare/pages/loginPage.html';
+// })
 
 /*
 <tr class="border-b border-gray-200 dark:border-gray-700">
