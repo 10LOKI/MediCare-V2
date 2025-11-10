@@ -121,16 +121,16 @@
             tr.classList.add(item.Status === 'accepte' ? 'bg-green-50' :
             item.status === 'refuse' ? 'bg-red-50' : 'bg-white');
             tr.innerHTML = array.map(item => `
-    <tr class:"border-b border-gray-200 shadow-md">
-        <td class="px-6 py-4">${item.fullName}</td>
-        <td class="px-6 py-4">${item.doctor}</td>
-        <td class="px-6 py-4">${item.date}</td>
-        <td class="px-6 py-4">${item.time}</td>
-        <td class="bg-amber-200 shadow-md flex flex-row items-center justify-evenly">
-            <div class="bg-center bg-no-repeat bg-[url('../../v1Medicare/images/verifie.png')] flex items-center justify-center p-1 cursor-pointer w-10/12 h-10 hover:scale-110 duration-700 transition-all "></div>
-            <div class="bg-center bg-no-repeat bg-[url('../../v1Medicare/images/supprimer.png')] flex items-center justify-center p-1 cursor-pointer w-10/12 h-10 hover:scale-80 duration-700 transition-all"></div>
-        </td>
-    </tr>
+        <tr class:"border-b border-gray-200 shadow-md">
+            <td class="px-6 py-4">${item.fullName}</td>
+            <td class="px-6 py-4">${item.doctor}</td>
+            <td class="px-6 py-4">${item.date}</td>
+            <td class="px-6 py-4">${item.time}</td>
+            <td class="bg-amber-200 shadow-md flex flex-row items-center justify-evenly">
+                <div class="bg-center bg-no-repeat bg-[url('../../v1Medicare/images/verifie.png')] flex items-center justify-center p-1 cursor-pointer w-10/12 h-10 hover:scale-110 duration-700 transition-all "></div>
+                <div class="bg-center bg-no-repeat bg-[url('../../v1Medicare/images/supprimer.png')] flex items-center justify-center p-1 cursor-pointer w-10/12 h-10 hover:scale-80 duration-700 transition-all"></div>
+            </td>
+        </tr>
   `).join('');
             list_Rendez_Vous.appendChild(tr)
             list_Rendez_Vous = ''
