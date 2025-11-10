@@ -188,13 +188,13 @@ function modifierButtonFunction(doc){
         }
     }
 
-    ///// bach nfermiw l forme becklick bera
+    ///// bach nsado l forme b click berra
     ajouterModel.addEventListener("click", function (e){
         if(e.target === ajouterModel){
             ajouterModel.classList.add("hidden");
         }
     })
-    localStorage.clear()
+    
   
 
 
