@@ -114,6 +114,7 @@ form.addEventListener('submit', function (e) {
 });
 function saveAppointment(appointment) {
     let appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+    appointment.status = 'Traitement'
     appointments.push(appointment);
     localStorage.setItem('appointments', JSON.stringify(appointments));
 }
@@ -159,6 +160,7 @@ function displayAppointments() {
                         <p><span class="text-gray-400">Email:</span> ${apt.email}</p>
                         <p><span class="text-gray-400">Téléphone:</span> ${apt.phone}</p>
                         ${apt.reason ? `<p class="mt-2"><span class="text-gray-400">Motif:</span> ${apt.reason}</p>` : ''}
+                        <td class="px-6 py-4">Status: ${apt.status}</td>
                     </div>
                 `;
 
