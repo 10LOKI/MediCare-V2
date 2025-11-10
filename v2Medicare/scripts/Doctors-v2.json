@@ -1,82 +1,60 @@
 {
-  "pageInfo": {
-    "title": "Nos Médecins - MedCare+",
-    "heading": "Nos Médecins",
-    "subtitle": "Notre Équipe Médicale",
-    "description": "Découvrez notre équipe de professionnels de santé qualifiés et dévoués, prêts à prendre soin de vous."
-  },
   "doctors": [
     {
       "id": 1,
       "name": "Dr. Sara Boudlal",
       "specialty": "Cardiologue",
       "image": "../../v1Medicare/images/doc01.jpg",
-      "availability": "unavailable",
-      "availabilityText": "Non Disponible",
-      "availabilityColor": "red"
+      "description": "description for medecin 1"
     },
     {
       "id": 2,
       "name": "Dr. Omar El Idrissi",
       "specialty": "Dermatologist",
       "image": "../../v1Medicare/images/doc02.jpg",
-      "availability": "available",
-      "availabilityText": "Disponible",
-      "availabilityColor": "green"
+      "description": "description for medecin 2"
     },
     {
       "id": 3,
       "name": "Dr. Ali Ford",
       "specialty": "Pediatrician",
       "image": "../../v1Medicare/images/doc03.jpg",
-      "availability": "busy",
-      "availabilityText": "Occupée",
-      "availabilityColor": "orange"
+      "description": "description for medecin 3"
     },
     {
       "id": 4,
       "name": "Dr. Houssem Ait Lahcen",
       "specialty": "General Practitioner",
       "image": "../../v1Medicare/images/doc04.jpg",
-      "availability": "available",
-      "availabilityText": "Disponible",
-      "availabilityColor": "green"
+      "description": "description for medecin 4"
     },
     {
       "id": 5,
       "name": "Dr. Imane El Amrani",
       "specialty": "Gynecologist",
       "image": "../../v1Medicare/images/doc05.jpg",
-      "availability": "available",
-      "availabilityText": "Disponible",
-      "availabilityColor": "green"
+      "description": "description for medecin 5"
     },
     {
       "id": 6,
       "name": "Dr. Karim Bensalem",
       "specialty": "Neurologist",
       "image": "../../v1Medicare/images/doc06.jpg",
-      "availability": "unavailable",
-      "availabilityText": "Non Disponible",
-      "availabilityColor": "red"
+      "description": "description for medecin 6"
     },
     {
       "id": 7,
       "name": "Dr. Rachid El Fassi",
       "specialty": "Orthopedic Surgeon",
       "image": "../../v1Medicare/images/doc07.jpg",
-      "availability": "unavailable",
-      "availabilityText": "Non Disponible",
-      "availabilityColor": "red"
+      "description": "description for medecin 7"
     },
     {
       "id": 8,
       "name": "Dr. Nadia Moujahid",
       "specialty": "Ophthalmologist",
       "image": "../../v1Medicare/images/doc08.jpg",
-      "availability": "busy",
-      "availabilityText": "Occupée",
-      "availabilityColor": "orange"
+      "description": "description for medecin 8"
     }
   ]
 }
