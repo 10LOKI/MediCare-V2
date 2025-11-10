@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="80">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Keyup-man</title>
+</head>
+<body class="bg-green-900/80">
+    
+
+
+
+    <div class="bg-blue-950/80 text-white w-full h-80 text-xl">
+        <div class="flex justify-center item-center h-20 bg-amber-900 p-20">
+            <div class="flex justify-center item-center gap-4 h-20  ">
+                
+                <input type="text" onkeyup="name_change()" id="name-input" placeholder="| text..." class="w-full h-12 px-5 bg-blue-950/80 rounded-3xl shadow-sm shadow-2xl shadow-black">
+                <button id="btn" class="cursor-pointer border-none rounded-2xl bg-amber-500 w-40 h-12 hover:shadow-amber-950 hover:shadow-md transition-all">add</button>
+            </div>
+        </div>
+        <div class="px-20 h-15 ">
+            <div id="writing" class="w-full h-full text-3xl">
+               <h1>you : </h1>
+            </div>
+            <div id="afficher" class="bg-green-500 px-3 py-2 text-2xl w-30 text-center cursor-pointer hover:bg-green-400 hover:w-32 ">
+                afficher
+            </div>
+        </div>
+    </div>
+    <div class="flex justify-center items-center text-2xl w-full text-shadow-black">
+        <h2 id="message"></h2>
+    </div>
+
+
+
+    <script>
+
+
+        let writing = document.getElementById("writing")
+        let input = document.querySelector("#name-input")
+        function name_change(){
+            writing.innerHTML = input.value 
+        }
+
+        let arr = []
+        if(localStorage.values != null) arr = JSON.parse(localStorage.values)
+
+        document.querySelector("#btn").addEventListener("click",()=>{
+        let nbr
+            nbr = input.value
+            arr.push(nbr)
+            input.value = ''
+            localStorage.setItem('values', JSON.stringify(arr))      
+        })
+        document.getElementById("afficher").addEventListener('click',()=>{
+            for(let element of arr)
+                document.querySelector("#message").innerHTML += element +`<br>`
+        })
+
+    </script>
+</body>
+</html>
