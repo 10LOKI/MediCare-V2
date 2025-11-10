@@ -7,6 +7,10 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+
 
 
 
@@ -65,30 +69,36 @@
         </div>
         <div id="bodySec" class="flex justify-center items-center w-full h-full">
             <div class="bg-white h-[90%] w-[90%] rounded-lg shadow-sm flex flex-col p-6">
-                <div id="container"
+                <!-- <div id="container"
                     class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full h-full overflow-y-auto scroll-smooth p-8">
-                </div>
-                <div class="h-full w-full bg-gray-900 rounded-lg flex justify-center items-center">
-                    <div class="bg-white h-[80%] w-[90%] rounded-lg flex-col  p-5 ">
+                </div> -->
+                <div class="h-full bg-gray-900 w-full  rounded-lg flex justify-center items-center">
+                    <div class=" h-[80%] w-[90%] rounded-lg flex-col  p-5 ">
                         <div class="flex justify-between h-fit">
-                            <input id="input-txt" type="text"
-                                class="text-blue-500 border-2 border-blue-500 h-10 bg-gray-900 rounded-[10px] px-[25px] py-[10px] w-[80%] active:shadow-[inset_2px_2px_15px_#8707ff]" />
-                            <button id="btn-txt" onclick="ajouteSpecialite()"
-                                class="w-20 h-10 text-center text-white rounded-2xl bg-gray-900 ml-10">Ajouté</button>
+                            <div class="relative w-full">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="ri-bookmark-line"></i></span>
+                                <input id="input-txt" type="text" placeholder="Veuillez saisir un specialté ..."
+                                    class="text-black border-2 border-white focus:outline-none h-10 bg-white rounded-[10px] px-[30px] py-[10px] w-[80%] active:shadow-[inset_2px_2px_15px_#8707ff]" />
+                            </div>
+                            <button id="btn-txt" onclick="ajouteSpec()"
+                                class="w-20 h-10 text-center text-white rounded-2xl bg-green-600 ml-10">Ajouté
+                            </button>
                         </div>
-                        <div id="sp-txt" class="flex  bg-gray-900 w-[100%] h-[60%] rounded-2xl mt-10 p-5 overflow-x-scroll"></div>
+                        <div id="sp-txt"
+                            class="flex  bg-white w-full h-[60%] rounded-2xl mt-10 p-5 overflow-x-scroll "></div>
                     </div>
                 </div>
             </div>
 
     </section>
     <script>
+
         const input = document.getElementById('input-txt')
         const btnTxt = document.getElementById('btn-txt')
         const containerTxt = document.getElementById('sp-txt')
         const container = document.getElementById('container')
         let specialte = JSON.parse(localStorage.getItem('specialties')) || []
-        renderSpecialties()
+        renderSpec()
         fetch('../scripts/Doctors-v2.json')
             .then((response) => response.json())
             .then(data => {
@@ -118,7 +128,7 @@
                     container.appendChild(cardDiv)
                 });
             })
-        function ajouteSpecialite() {
+        function ajouteSpec() {
             if (input.value.trim() === '') {
                 alert('Veuillez entrer une spécialité')
                 return
@@ -128,13 +138,13 @@
             specialte.push(text)
             localStorage.setItem('specialties', JSON.stringify(specialte))
             input.value = ''
-            renderSpecialties()
+            renderSpec()
         }
-        function renderSpecialties() {
+        function renderSpec() {
             containerTxt.innerHTML = ''
             specialte.forEach((spec, index) => {
                 const specDiv = document.createElement('div')
-                specDiv.className = 'w-30 h-10 flex justify-between items-center bg-white rounded-lg p-3 mb-2 mx-3 hover:bg-blue-50 transition-colors duration-200'
+                specDiv.className = 'w-30 h-10 flex justify-between items-center border- bg-white rounded-lg p-3 mb-2 mx-3 hover:bg-blue-50 transition-colors duration-200'
 
                 const specText = document.createElement('span')
                 specText.className = 'text-gray-900 font-medium'
@@ -143,23 +153,57 @@
                 const deleteBtn = document.createElement('button')
                 deleteBtn.className = 'text-red-500 hover:text-red-700 font-bold text-xl'
                 deleteBtn.innerHTML = '&times;'
-                deleteBtn.onclick = () => deleteSpecialty(index)
+                deleteBtn.onclick = () => popupSwt(index)
 
                 specDiv.appendChild(specText)
                 specDiv.appendChild(deleteBtn)
                 containerTxt.appendChild(specDiv)
             })
         }
-        function deleteSpecialty(index) {
-            specialte.splice(index, 1)
-            localStorage.setItem('specialties', JSON.stringify(specialte))
-            renderSpecialties()
-        }
+
         input.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                ajouteSpecialite()
+                ajouteSpec()
             }
         })
+        function popupSwt(index) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger"
+                },
+                buttonsStyling: false
+            });
+
+            swalWithBootstrapButtons.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    specialte.splice(index, 1);
+                    localStorage.setItem('specialties', JSON.stringify(specialte));
+                    renderSpec();
+
+                    swalWithBootstrapButtons.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Cancelled",
+                        text: "Your imaginary file is safe :)",
+                        icon: "error"
+                    });
+                }
+            });
+        }
+
     </script>
 </body>
 
