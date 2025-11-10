@@ -12,7 +12,7 @@
 <body>
     <section class="bg-gray-900 w-[100vw] h-[100vh] flex">
         <div class="bg-slate-100 grid grid-flow-col grid-rows-6 w-[300px] h-full px-4 ">
-            <a class="row-span-1 w-full h-full h-fit flex justify-center items-center" href="index.html">
+            <a class="row-span-1 w-full h-full  flex justify-center items-center" href="index.html">
                 <div class="text-gray-900 text-xl font-bold">MED <span class="font-bold text-blue-500">Care+</span>
                 </div>
             </a>
@@ -48,21 +48,21 @@
 
             <section id="medecins" class="bg-gray-50 rounded-lg shadow-md p-6 w-[80%] max-w-5xl">
                 <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-base text-white-900 dark:text-white"> Liste des médecins</h3>
-                    <button id="ajouterDoc" type="button"
-                        class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                        Liste des médecins
+                    </h3>
+                    <button id="ajouterDoc" type="button" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 
                 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                         ajouter un médecin</button>
                 </div>
                 <div>
-                    <table
-                        class=" w-full border border-gray-200 border-collapse text-center">
+                    <table class=" w-full border border-gray-200 border-collapse text-center">
                         <thead class="bg-gray-100 text-gray-700 uppercase">
                             <tr>
+                                <th class="border border-gray-300 p-2 text-center">Photo</th>
                                 <th class="border border-gray-300 p-2 text-center">Nom</th>
                                 <th class="border border-gray-300 p-2 text-center">Spécialité</th>
-                                <th class="border border-gray-300 p-2 text-center">Disponible aujourd’hui</th>
-                                <th class="border border-gray-300 p-2 text-center"></th>
+                                <th class="border border-gray-300 p-2 text-center">Action</th>
                             </tr>
                         </thead>
 
@@ -72,18 +72,18 @@
                     </table>
                 </div>
             </section>
-
-
         </div>
     </section>
-    <div id="ajouterModel" class="fixed inset-0  items-center justify-center bg-black bg-opacity-50 hidden">
-        <form class="max-w-md mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-300 shadow-lg">
-            <div class="p-6">
+
+    <div id="ajouterModel" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 border-8 hidden">
+        <form class="max-w-md mx-auto p-6  bg-white dark:bg-gray-800 rounded-lg border border-gray-300 shadow-lg">
+            <div class="p-6 mx-6">
 
                 <h2 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-6">
                     Ajouter un médecin
                 </h2>
-
+                <!-- Hidden id pour modifier et supprimer-->
+                <input type="hidden" id="doctorId" value="">
                 <!-- Nom -->
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" id="nameInpute" placeholder=" "
