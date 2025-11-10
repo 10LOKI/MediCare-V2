@@ -187,4 +187,3 @@ function validateField(field) {
 
     return isValid;
 }
-

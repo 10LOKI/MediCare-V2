@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medcare+ login</title>
-    <link rel="shortcut icon" href="../../v1Medicare/images/Medicare+.webp" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap" rel="stylesheet">
     
@@ -47,7 +46,7 @@
             </button>
         </div>
         <div class="grid items-center justify-center rounded-xl p-1 mx-auto">
-            <img src="../../v1Medicare/images/login.svg" alt="login image care Healthy" class="w-120 md:w-115 lg:150">
+            <img src="../public/images/login.svg" alt="login image care Healthy" class="w-120 md:w-115 lg:150">
         </div>
 
 
@@ -70,6 +69,10 @@
         //let pass_cockie = datacockies.getItem("pass")
 
 
+
+        //bedra coder
+
+
         //const login = document.querySelector("#logBtn")
         function Login() {
 
@@ -83,19 +86,17 @@
                 gestionErreurPass(pass)
             }
             else {
-                email.innerHTML =""
-                pass.innerHTML =""
                 alert("logged in now")
-                setInterval(() => {
-                    localStorage.setItem("loginIs", "true");
-                    location.href = 'g_rendez-vous.html';
 
-                },1000);
+                setTimeout(() => {
+                    localStorage.setItem("loginIs=>", "true");
+                    location.href = 'g_disponibilites.html';
+
+                }, 10);
             }
         }
         
         function gestionErreurEmail(email){
-            /* gestion d'erreurs Email*/
             let error_email = document.querySelector(".error-messageEmail")
              if (email === "")
                 error_email.innerHTML = "Email pas encoure remplaire!"
@@ -105,7 +106,7 @@
                 error_email.style.display = 'hidden'
         }
         function gestionErreurPass(pass) {
-            /* gestion d'erreurs ModePass*/
+            /* gestion d'erreurs*/
             let error_pass = document.querySelector(".error-messagePass")
             if (pass === "")
                 error_pass.innerHTML = "Modepass pas encoure remplaire!"
