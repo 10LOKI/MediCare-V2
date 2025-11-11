@@ -1,141 +1,103 @@
-// Jours de la semaine
-const daysOfWeek = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
-
+const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedu", "Dimanche"];
 document.addEventListener('DOMContentLoaded', () => {
-    
-    fetch('../scripts/Doctors-v2.json') 
+    fetch('../scripts/Doctors-v2.json')
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Erreur HTTP! Statut: ${response.status}`);
+                throw new Error(`Erreur : ${response.status}`);
             }
             return response.json();
         })
         .then(jsonData => {
-            // 1. CIBLER VOTRE DIV EXISTANTE
-            const container = document.getElementById('medecinCards');
+            const container = document.getElementById('medcinCartes');
             if (!container) {
-                console.error("Erreur : Le conteneur #medecinCards n'a pas été trouvé.");
+                console.error("Erreur : Y'a pas de cartes de medcins");
                 return;
             }
-
-            // 2. PRÉPARER LE CONTENEUR
             container.classList.add('p-6', 'h-full', 'overflow-y-auto');
-            container.innerHTML = '<h1 class="text-2xl font-bold text-gray-900 mb-6">Gérer les Disponibilités (US6)</h1>';
-            
-            const cardsList = document.createElement('div');
-            cardsList.className = 'space-y-6';
-            container.appendChild(cardsList);
+            container.innerHTML = '<h1 class="text-2xl font-bold text-gray-900 mb-6">Gérer les Disponibilités </h1>';
+            const listeCartes = document.createElement('div');
+            listeCartes.className = 'space-y-6'
+            container.appendChild(listeCartes);
 
-            // -----------------------------------------------------------------
-            // 3. GÉNÉRER LES CARTES MÉDECINS (US6) - Version createElement
-            // -----------------------------------------------------------------
-            jsonData.doctors.forEach(doctor => {
-                const savedAvail = JSON.parse(localStorage.getItem(`availability_${doctor.id}`)) || [];
+            jsonData.doctors.forEach(medcin => {
+                const dispo = JSON.parse(localStorage.getItem(`dispo_${medcin.id}`)) || [];
+                const medcinDiv = document.createElement('div');
+                medcinDiv.className = 'bg-gray-50 p-4 rounded-lg shadow-md border border-gray-200';
 
-                // Créer la carte principale
-                const doctorDiv = document.createElement('div');
-                doctorDiv.className = 'bg-gray-50 p-4 rounded-lg shadow-md border border-gray-200';
+                const topDiv = document.createElement('div');
+                topDiv.className = 'flex flex-col md:flex-row md:items-center md:justify-between';
 
-                // --- Créer la rangée du haut ---
-                const topRowDiv = document.createElement('div');
-                topRowDiv.className = 'flex flex-col md:flex-row md:items-center md:justify-between';
-
-                // --- Créer la partie infos (nom + spécialité) ---
                 const infoDiv = document.createElement('div');
-                
-                const title = document.createElement('h3');
-                title.className = 'text-lg font-semibold text-gray-900';
-                title.textContent = doctor.name; // Utiliser .textContent est plus sûr
-                
-                const specialty = document.createElement('p');
-                specialty.className = 'text-sm text-gray-600';
-                specialty.textContent = doctor.specialty;
+                const nom = document.createElement('h3');
+                nom.className = 'text-lg font-semibold text-gray-900';
+                nom.textContent = medcin.name;
+                const specialite = document.createElement('p');
+                specialite.className = 'text-sm text-gray-600';
+                specialite.textContent = medcin.specialty;
 
-                // Assembler la partie infos
-                infoDiv.appendChild(title);
-                infoDiv.appendChild(specialty);
+                infoDiv.appendChild(nom);
+                infoDiv.appendChild(specialite);
 
-                // --- Créer le bouton Sauvegarder ---
-                const saveButton = document.createElement('button');
-                saveButton.className = 'save-btn mt-4 md:mt-0 bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition duration-300 flex items-center justify-center';
-                saveButton.dataset.id = doctor.id; // Utiliser .dataset pour les attributs data-*
-                saveButton.innerHTML = '<i class="ri-save-line mr-2"></i>Sauvegarder'; // OK d'utiliser innerHTML pour l'icône
+                const sauvegardBtn = document.createElement('button');
+                sauvegardBtn.className = 'save-btn mt-4 md:mt-0 bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition duration-300 flex items-center justify-center';
+                sauvegardBtn.dataset.id = medcin.id;
+                sauvegardBtn.innerHTML = '<i class="ri-save-line mr-2"></i>Sauvegarder';
 
-                // Assembler la rangée du haut
-                topRowDiv.appendChild(infoDiv);
-                topRowDiv.appendChild(saveButton);
+                topDiv.appendChild(infoDiv);
+                topDiv.appendChild(sauvegardBtn);
 
-                // --- Créer la rangée du bas (checkboxes) ---
-                const checkboxesDiv = document.createElement('div');
-                checkboxesDiv.className = 'mt-4 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4';
+                const checkboxDiv = document.createElement('div');
+                checkboxDiv.className = 'mt-4 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4';
 
-                // Boucler pour créer chaque checkbox
-                daysOfWeek.forEach(day => {
+                jours.forEach(jour => {
                     const label = document.createElement('label');
                     label.className = 'flex items-center space-x-2 cursor-pointer';
 
                     const input = document.createElement('input');
                     input.type = 'checkbox';
                     input.className = 'form-checkbox h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500';
-                    input.value = day;
-                    if (savedAvail.includes(day)) {
+                    input.value = jour;
+                    if (dispo.includes(jour)) {
                         input.checked = true;
                     }
-
-                    const span = document.createElement('span');
+                    const span = document.createElement('span')
                     span.className = 'text-gray-700 select-none';
-                    span.textContent = day;
+                    span.textContent = jour;
 
-                    // Assembler la checkbox
                     label.appendChild(input);
                     label.appendChild(span);
-                    checkboxesDiv.appendChild(label);
+                    checkboxDiv.appendChild(label);
                 });
 
-                // --- Assembler la carte finale ---
-                doctorDiv.appendChild(topRowDiv);
-                doctorDiv.appendChild(checkboxesDiv);
-                
-                // Ajouter la carte complète à la liste
-                cardsList.appendChild(doctorDiv);
-            });
-            // -----------------------------------------------------------------
-            // FIN DE LA SECTION MODIFIÉE
-            // -----------------------------------------------------------------
+                medcinDiv.appendChild(topDiv);
+                medcinDiv.appendChild(checkboxDiv);
+                listeCartes.appendChild(medcinDiv);
+            }
+            )
 
-            // 4. GÉRER LES CLICS SUR "SAUVEGARDER" (US6)
-            cardsList.addEventListener('click', (e) => {
-                const saveButton = e.target.closest('.save-btn');
-                if (!saveButton) return;
+            listeCartes.addEventListener('click', (e) => {
+                const sauvegardBtn = e.target.closest('.save-btn');
+                if (!sauvegardBtn) return;
+                const medcinId = sauvegardBtn.dataset.id;
+                const carte = sauvegardBtn.closest('.bg-gray-50');
 
-                const doctorId = saveButton.dataset.id;
-                const card = saveButton.closest('.bg-gray-50');
-                
-                const selectedDays = [];
-                card.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
-                    selectedDays.push(checkbox.value);
+                const choisJours = [];
+                carte.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                    choisJours.push(checkbox.value);
                 });
-
-                localStorage.setItem(`availability_${doctorId}`, JSON.stringify(selectedDays));
-                showConfirmation('Disponibilités mises à jour');
-            });
-            
-        }) // Fin du .then(jsonData => { ... })
+                localStorage.setItem(`dispo_${medcinId}`, JSON.stringify(choisJours));
+                showConfirmation('Disponibilités mises a jour');
+            })
+        })
         .catch(error => {
-            console.error("Erreur lors du chargement des données médecins:", error);
-            const container = document.getElementById('medecinCards');
+            console.error("Erreur les cartes des medcins ne sont pas charges", error);
+            const container = document.getElementById("medcinCartes");
             if (container) {
                 container.innerHTML = '<p class="p-6 text-red-500 font-bold">Impossible de charger les données des médecins. Vérifiez la console.</p>';
             }
-        });
-
-    // 5. Injecter les styles pour le message de confirmation (toast)
+        })
     addToastStyles();
-});
-
-/**
- * Affiche un message de confirmation (toast)
- */
+})
 function showConfirmation(message) {
     const existingToast = document.querySelector('.toast-message');
     if (existingToast) {
@@ -145,7 +107,7 @@ function showConfirmation(message) {
     const toast = document.createElement('div');
     toast.className = 'toast-message';
     toast.textContent = message;
-    
+
     document.body.appendChild(toast);
 
     setTimeout(() => {
