@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded',() =>
             return;
         }
         container.classList.add('p-6', 'h-full', 'overflow-y-auto');
-        container.innerHTML = '<h1 class="text-2xl font-bold text-gray-900 mb-6">Gérer les Disponibilités (US6)</h1>';
+        container.innerHTML = '<h1 class="text-2xl font-bold text-gray-900 mb-6">Gérer les Disponibilités </h1>';
         const listeCartes = document.createElement('div');
         listeCartes.className = 'space-y-6'
         container.appendChild(listeCartes);

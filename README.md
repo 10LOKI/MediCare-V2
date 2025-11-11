@@ -27,4 +27,4 @@ Le Back-Office assure la synchronisation de toutes les données (médecins, spé
 
      - Affichage détaillé de la liste des rendez-vous pris.
      - Filtrage des rendez-vous (par Médecin, Date, Statut).
-     - Actions sur les rendez-vous : Valider, Annuler, Reprogrammer
+     - Actions sur les rendez-vous : Valider, Annuler, Reprogrammer.

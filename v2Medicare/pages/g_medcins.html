@@ -1,13 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="shortcut icon" href="../../v1Medicare/images/Medicare+.webp" type="image/x-icon">
-
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
 </head>
+
 <body>
-    
+    <section class="bg-gray-900 w-[100vw] h-[100vh] flex">
+        <div class="bg-slate-100 grid grid-flow-col grid-rows-6 w-[300px] h-full px-4 ">
+            <a class="row-span-1 w-full h-full  flex justify-center items-center" href="index.html">
+                <div class="text-gray-900 text-xl font-bold">MED <span class="font-bold text-blue-500">Care+</span>
+                </div>
+            </a>
+            <nav class="row-start-2 row-end-5 grid grid-rows-5">
+                <a href="../acceuil.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-dashboard-horizontal-fill  mx-7"></i> Dashboard
+            </a>
+                <a href="g_medcins.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-medicine-bottle-fill mx-7"></i> Medecins
+        </a>
+                <a href="g_specialites.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-test-tube-fill mx-7"></i> Specialité
+    </a>
+                <a href="g_disponibilites.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-pulse-fill hover:ri-pulse-fill mx-7"></i> Disponibilité
+</a>
+                <a href="g_rendez-vous.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-calendar-fill mx-7"></i> Rendez-vous
+</a>
+            </nav>
+            <a href="loginPage.html"
+                class="relative top-10 row-start-6 row-end-7 flex text-gray-900  items-center hover:text-blue-500 cursor-pointer w-fit h-fit transition bltext-blue-500 cursor-pointer5 duration-300">
+                <i class="ri-logout-circle-r-line text-3xl "></i>
+                Log Out
+        </a>
+        </div>
+        <div id="bodySec" class="flex justify-center items-start w-full bg-white h-full p-6 overflow-auto">
+
+            <section id="medecins" class="bg-gray-50 rounded-lg shadow-md p-6 w-[80%] max-w-5xl">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                        Liste des médecins
+                    </h3>
+                    <button id="ajouterDoc" type="button" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 
+                focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        ajouter un médecin</button>
+                </div>
+                <div>
+                    <table class=" w-full border border-gray-200 border-collapse text-center">
+                        <thead class="bg-gray-100 text-gray-700 uppercase">
+                            <tr>
+                                <th class="border border-gray-300 p-2 text-center">Photo</th>
+                                <th class="border border-gray-300 p-2 text-center">Nom</th>
+                                <th class="border border-gray-300 p-2 text-center">Spécialité</th>
+                                <th class="border border-gray-300 p-2 text-center">Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="medecinsTbody">
+
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <div id="ajouterModel"
+        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 border-8 hidden">
+        <form class="max-w-md mx-auto p-6  bg-white dark:bg-gray-800 rounded-lg border border-gray-300 shadow-lg">
+            <div class="p-6 mx-6">
+
+                <h2 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-6">
+                    Ajouter un médecin
+                </h2>
+                <!-- Hidden id pour modifier et supprimer-->
+                <input type="hidden" id="doctorId" value="">
+                <!-- Nom -->
+                <div class="relative z-0 w-full mb-5 group">
+                    <input type="text" id="nameInpute" placeholder=" "
+                        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        required>
+                    <label class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400
+        duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0
+        peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
+        peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                        Nom
+                    </label>
+                </div>
+
+                <!-- Spécialité -->
+                <div class="relative z-0 w-full mb-5 group">
+    <select id="specInpute"
+        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 
+        border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 
+        focus:border-blue-600 peer dark:text-white dark:border-gray-600 
+        dark:focus:border-blue-500"
+        required>
+        <option value="" disabled selected hidden>Choisir une spécialité</option>
+    </select>
+
+    <label for="specInpute"
+        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400
+        duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0]
+        peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500
+        peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0
+        peer-focus:scale-75 peer-focus:-translate-y-6">
+        Spécialité
+    </label>
+</div>
+
+                <!-- Photo URL -->
+                <div class="relative z-0 w-full mb-5 group">
+                    <input type="text" id="inputPhoto" placeholder=" "
+                        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                    <label for="inputPhoto" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400
+         duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0
+        peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
+        peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                        Photo (URL)
+                    </label>
+                </div>
+
+                <!-- Description -->
+                <div class="max-w-sm mb-5">
+                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Description
+                    </label>
+                    <textarea id="discriptionInput" rows="4" placeholder="Entrer médecin description"
+                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    </textarea>
+                </div>
+
+                <!-- Button Ajouter et annuler -->
+                <div class="flex justify-center">
+                    <button id="ajouterFormButton" type="button"
+                        class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                        Ajouter
+                    </button>
+                    <button id="annulerButtonMedecin" type="button"
+                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                        Annuler
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <script src="../scripts/Doctors-v2.json"></script>
+    <script src="../scripts/g-medcins.js"></script>
 </body>
+
+
 </html>

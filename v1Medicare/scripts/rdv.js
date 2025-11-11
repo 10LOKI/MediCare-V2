@@ -4,8 +4,19 @@ dateInput.min = today;
 const form = document.getElementById('appointmentForm');
 const inputs = form.querySelectorAll('input[required], select[required]');
 
-let doctors = JSON.parse(localStorage.getItem('doctors'))
+function getDoctors() {//v2
+    const doctors =JSON.parse(localStorage.getItem('doctors') || '[]') 
+    let docteurs = document.getElementById('doctors')
+    for (let item = 0; item < doctors.length; item++) {
+        docteurs.innerHTML += `<option value="${doctors[item].name}" class="text-center text-bold text-xl bg-gray-600 w-80"> ${doctors[item].name} - ${doctors[item].specialty}
+    </option>`;
+    }
+}
+getDoctors()
 function validateField(field) {
+
+    const doctors =JSON.parse(localStorage.getItem('doctors') || '[]')
+
     const formGroup = field.closest('.form-group');
     const errorMessage = formGroup.querySelector('.error-message');
     let isValid = true;
@@ -103,12 +114,12 @@ form.addEventListener('submit', function (e) {
         fullName: document.getElementById('fullName').value.trim(),
         email: document.getElementById('email').value.trim(),
         phone: document.getElementById('phone').value.trim(),
-        doctor: document.getElementById('doctor').value,
+        doctors: document.getElementById('doctors').value,
         date: document.getElementById('date').value,
         time: document.getElementById('time').value,
         reason: document.getElementById('reason').value.trim(),
         createdAt: new Date().toISOString(),
-        status_rdv: "Traitement"
+        statusRdv: "Traitement"
     };
     saveAppointment(formData);
     showModal();
@@ -121,7 +132,7 @@ function saveAppointment(appointment) {
     localStorage.setItem('appointments', JSON.stringify(appointments));
 }
 function displayAppointments() {
-    const appointments = JSON.parse(localStorage.appointments || '[]');
+    const appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
     const container = document.getElementById('appointmentsContainer');
     const listSection = document.getElementById('appointmentsList');
 
@@ -147,7 +158,7 @@ function displayAppointments() {
         aptCard.innerHTML = `
                     <div class="flex justify-between items-start mb-3">
                         <div>
-                            <h3 class="text-lg font-bold text-white">${apt.doctor}</h3>
+                            <h3 class="text-lg font-bold text-white">${apt.doctors}</h3>
                             <p class="text-blue-400 text-sm">${dateFormatted} à ${apt.time}</p>
                         </div>
                         <button onclick="deleteAppointment(${apt.id})" 
@@ -162,13 +173,15 @@ function displayAppointments() {
                         <p><span class="text-gray-400">Email:</span> ${apt.email}</p>
                         <p><span class="text-gray-400">Téléphone:</span> ${apt.phone}</p>
                         ${apt.reason ? `<p class="mt-2"><span class="text-gray-400">Motif:</span> ${apt.reason}</p>` : ''}
-                        <td class="px-6 py-4">Status: ${apt.status_rdv}</td>
+                        <td class="px-6 py-4">Status: ${apt.statusRdv}</td>
                     </div>
                 `;
 
         container.appendChild(aptCard);
     });
 }
+
+//<option value="Dr. Sarah Martin">Dr. Sarah Martin - Cardiologue</option>
 function deleteAppointment(id) {
     if (confirm('Êtes-vous sûr de vouloir annuler ce rendez-vous ?')) {
         let appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
@@ -197,7 +210,7 @@ function closeModal() {
 
     setTimeout(() => {
         modal.classList.add('hidden');
-    },100);
+    },10);
 }
 document.getElementById('successModal').addEventListener('click', function (e) {
     if (e.target === this) {
