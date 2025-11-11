@@ -3,6 +3,8 @@ const today = new Date().toISOString().split('T')[0];
 dateInput.min = today;
 const form = document.getElementById('appointmentForm');
 const inputs = form.querySelectorAll('input[required], select[required]');
+
+let doctors = JSON.parse(localStorage.getItem('doctors'))
 function validateField(field) {
     const formGroup = field.closest('.form-group');
     const errorMessage = formGroup.querySelector('.error-message');
@@ -184,7 +186,7 @@ function showModal() {
     setTimeout(() => {
         modalContent.style.transform = 'scale(1)';
         modalContent.style.opacity = '1';
-    }, 500);
+    }, 10);
 }
 function closeModal() {
     const modal = document.getElementById('successModal');
@@ -195,7 +197,7 @@ function closeModal() {
 
     setTimeout(() => {
         modal.classList.add('hidden');
-    }, 500);
+    }, 100);
 }
 document.getElementById('successModal').addEventListener('click', function (e) {
     if (e.target === this) {
