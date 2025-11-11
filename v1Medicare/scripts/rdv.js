@@ -107,7 +107,8 @@ form.addEventListener('submit', function (e) {
         date: document.getElementById('date').value,
         time: document.getElementById('time').value,
         reason: document.getElementById('reason').value.trim(),
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
+        status_rdv: "Traitement"
     };
     saveAppointment(formData);
     showModal();
@@ -116,12 +117,11 @@ form.addEventListener('submit', function (e) {
 });
 function saveAppointment(appointment) {
     let appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
-    appointment.status = 'Traitement'
     appointments.push(appointment);
     localStorage.setItem('appointments', JSON.stringify(appointments));
 }
 function displayAppointments() {
-    const appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+    const appointments = JSON.parse(localStorage.appointments || '[]');
     const container = document.getElementById('appointmentsContainer');
     const listSection = document.getElementById('appointmentsList');
 
@@ -162,7 +162,7 @@ function displayAppointments() {
                         <p><span class="text-gray-400">Email:</span> ${apt.email}</p>
                         <p><span class="text-gray-400">Téléphone:</span> ${apt.phone}</p>
                         ${apt.reason ? `<p class="mt-2"><span class="text-gray-400">Motif:</span> ${apt.reason}</p>` : ''}
-                        <td class="px-6 py-4">Status: ${apt.status}</td>
+                        <td class="px-6 py-4">Status: ${apt.status_rdv}</td>
                     </div>
                 `;
 
@@ -197,7 +197,7 @@ function closeModal() {
 
     setTimeout(() => {
         modal.classList.add('hidden');
-    }, 100);
+    },100);
 }
 document.getElementById('successModal').addEventListener('click', function (e) {
     if (e.target === this) {
