@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const option = document.createElement('option');
             option.value = doctor.id;
             option.textContent = `${doctor.name} - ${doctor.specialty}`;
+            option.classList.add('text-black');
             doctorSelect.appendChild(option);
         });
     } else {

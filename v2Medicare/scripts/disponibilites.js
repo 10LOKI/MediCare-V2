@@ -1,141 +1,130 @@
-// Jours de la semaine
-const daysOfWeek = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
 
 document.addEventListener('DOMContentLoaded', () => {
-    
-    fetch('../scripts/Doctors-v2.json') 
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Erreur HTTP! Statut: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(jsonData => {
-            // 1. CIBLER VOTRE DIV EXISTANTE
-            const container = document.getElementById('medecinCards');
-            if (!container) {
-                console.error("Erreur : Le conteneur #medecinCards n'a pas été trouvé.");
+
+    // 1. Kanjibo l-data direct men localStorage, machi men l-JSON
+    const storedDoctors = localStorage.getItem("doctors");
+
+    const container = document.getElementById('medcinCartes');
+    const select = document.getElementById('doctor-filter-select');
+
+    if (!container || !select) {
+        console.error("Erreur : Ma kaynch l-container 'medcinCartes' wla 'doctor-filter-select'");
+        return;
+    }
+
+    // 2. Kan checkiw wach localStorage fih data
+    if (storedDoctors) {
+        
+        // 3. Kan 7ewlo data men string l-array
+        const doctorsData = JSON.parse(storedDoctors);
+
+        // 4. Kan 3emro l-dropdown b l-lista dyal tbiba men localStorage
+        select.innerHTML = '<option value="">-- Khtar Medcin --</option>';
+        doctorsData.forEach(medcin => {
+            const option = document.createElement('option');
+            option.value = medcin.id;
+            option.textContent = `${medcin.name} (${medcin.specialty})`;
+            select.appendChild(option);
+        });
+
+        // 5. Kan tssento l-dropdown (had l-code bqa nafsso)
+        select.addEventListener('change', () => {
+            const medcinId = select.value;
+            container.innerHTML = '';
+
+            if (!medcinId) {
                 return;
             }
 
-            // 2. PRÉPARER LE CONTENEUR
-            container.classList.add('p-6', 'h-full', 'overflow-y-auto');
-            container.innerHTML = '<h1 class="text-2xl font-bold text-gray-900 mb-6">Gérer les Disponibilités (US6)</h1>';
-            
-            const cardsList = document.createElement('div');
-            cardsList.className = 'space-y-6';
-            container.appendChild(cardsList);
+            // Kan 9elbo 3la tbib f l-lista dyal localStorage
+            const medcin = doctorsData.find(doc => doc.id == medcinId);
+            if (!medcin) return;
 
-            // -----------------------------------------------------------------
-            // 3. GÉNÉRER LES CARTES MÉDECINS (US6) - Version createElement
-            // -----------------------------------------------------------------
-            jsonData.doctors.forEach(doctor => {
-                const savedAvail = JSON.parse(localStorage.getItem(`availability_${doctor.id}`)) || [];
+            const dispo = JSON.parse(localStorage.getItem(`availability_${medcin.id}`)) || [];
 
-                // Créer la carte principale
-                const doctorDiv = document.createElement('div');
-                doctorDiv.className = 'bg-gray-50 p-4 rounded-lg shadow-md border border-gray-200';
+            const medcinDiv = document.createElement('div');
+            medcinDiv.className = 'bg-gray-50 p-4 rounded-lg shadow-md border border-gray-200';
 
-                // --- Créer la rangée du haut ---
-                const topRowDiv = document.createElement('div');
-                topRowDiv.className = 'flex flex-col md:flex-row md:items-center md:justify-between';
+            const topDiv = document.createElement('div');
+            topDiv.className = 'flex flex-col md:flex-row md:items-center md:justify-between';
 
-                // --- Créer la partie infos (nom + spécialité) ---
-                const infoDiv = document.createElement('div');
-                
-                const title = document.createElement('h3');
-                title.className = 'text-lg font-semibold text-gray-900';
-                title.textContent = doctor.name; // Utiliser .textContent est plus sûr
-                
-                const specialty = document.createElement('p');
-                specialty.className = 'text-sm text-gray-600';
-                specialty.textContent = doctor.specialty;
+            const infoDiv = document.createElement('div');
+            const nom = document.createElement('h3');
+            nom.className = 'text-lg font-semibold text-gray-900';
+            nom.textContent = medcin.name;
+            const specialite = document.createElement('p');
+            specialite.className = 'text-sm text-gray-600';
+            specialite.textContent = medcin.specialty;
 
-                // Assembler la partie infos
-                infoDiv.appendChild(title);
-                infoDiv.appendChild(specialty);
+            infoDiv.appendChild(nom);
+            infoDiv.appendChild(specialite);
 
-                // --- Créer le bouton Sauvegarder ---
-                const saveButton = document.createElement('button');
-                saveButton.className = 'save-btn mt-4 md:mt-0 bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition duration-300 flex items-center justify-center';
-                saveButton.dataset.id = doctor.id; // Utiliser .dataset pour les attributs data-*
-                saveButton.innerHTML = '<i class="ri-save-line mr-2"></i>Sauvegarder'; // OK d'utiliser innerHTML pour l'icône
+            const sauvegardBtn = document.createElement('button');
+            sauvegardBtn.className = 'save-btn mt-4 md:mt-0 bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition duration-300 flex items-center justify-center';
+            sauvegardBtn.dataset.id = medcin.id;
+            sauvegardBtn.innerHTML = '<i class="ri-save-line mr-2"></i>Sauvegarder';
 
-                // Assembler la rangée du haut
-                topRowDiv.appendChild(infoDiv);
-                topRowDiv.appendChild(saveButton);
+            topDiv.appendChild(infoDiv);
+            topDiv.appendChild(sauvegardBtn);
 
-                // --- Créer la rangée du bas (checkboxes) ---
-                const checkboxesDiv = document.createElement('div');
-                checkboxesDiv.className = 'mt-4 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4';
+            const checkboxDiv = document.createElement('div');
+            checkboxDiv.className = 'mt-4 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4';
 
-                // Boucler pour créer chaque checkbox
-                daysOfWeek.forEach(day => {
-                    const label = document.createElement('label');
-                    label.className = 'flex items-center space-x-2 cursor-pointer';
+            jours.forEach(jour => {
+                const label = document.createElement('label');
+                label.className = 'flex items-center space-x-2 cursor-pointer';
 
-                    const input = document.createElement('input');
-                    input.type = 'checkbox';
-                    input.className = 'form-checkbox h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500';
-                    input.value = day;
-                    if (savedAvail.includes(day)) {
-                        input.checked = true;
-                    }
+                const input = document.createElement('input');
+                input.type = 'checkbox';
+                input.className = 'form-checkbox h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500';
+                input.value = jour;
+                if (dispo.includes(jour)) {
+                    input.checked = true;
+                }
+                const span = document.createElement('span')
+                span.className = 'text-gray-700 select-none';
+                span.textContent = jour;
 
-                    const span = document.createElement('span');
-                    span.className = 'text-gray-700 select-none';
-                    span.textContent = day;
-
-                    // Assembler la checkbox
-                    label.appendChild(input);
-                    label.appendChild(span);
-                    checkboxesDiv.appendChild(label);
-                });
-
-                // --- Assembler la carte finale ---
-                doctorDiv.appendChild(topRowDiv);
-                doctorDiv.appendChild(checkboxesDiv);
-                
-                // Ajouter la carte complète à la liste
-                cardsList.appendChild(doctorDiv);
+                label.appendChild(input);
+                label.appendChild(span);
+                checkboxDiv.appendChild(label);
             });
-            // -----------------------------------------------------------------
-            // FIN DE LA SECTION MODIFIÉE
-            // -----------------------------------------------------------------
 
-            // 4. GÉRER LES CLICS SUR "SAUVEGARDER" (US6)
-            cardsList.addEventListener('click', (e) => {
-                const saveButton = e.target.closest('.save-btn');
-                if (!saveButton) return;
-
-                const doctorId = saveButton.dataset.id;
-                const card = saveButton.closest('.bg-gray-50');
-                
-                const selectedDays = [];
-                card.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
-                    selectedDays.push(checkbox.value);
-                });
-
-                localStorage.setItem(`availability_${doctorId}`, JSON.stringify(selectedDays));
-                showConfirmation('Disponibilités mises à jour');
-            });
-            
-        }) // Fin du .then(jsonData => { ... })
-        .catch(error => {
-            console.error("Erreur lors du chargement des données médecins:", error);
-            const container = document.getElementById('medecinCards');
-            if (container) {
-                container.innerHTML = '<p class="p-6 text-red-500 font-bold">Impossible de charger les données des médecins. Vérifiez la console.</p>';
-            }
+            medcinDiv.appendChild(topDiv);
+            medcinDiv.appendChild(checkboxDiv);
+            container.appendChild(medcinDiv);
         });
 
-    // 5. Injecter les styles pour le message de confirmation (toast)
+        // 6. Listener dyal l-Sauvegarde (bqa nafsso)
+        container.addEventListener('click', (e) => {
+            const sauvegardBtn = e.target.closest('.save-btn');
+            if (!sauvegardBtn) return;
+
+            const medcinId = sauvegardBtn.dataset.id;
+            const carte = sauvegardBtn.closest('.bg-gray-50');
+
+            const choisJours = [];
+            carte.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                choisJours.push(checkbox.value);
+            });
+            
+            localStorage.setItem(`availability_${medcinId}`, JSON.stringify(choisJours));
+            showConfirmation('Disponibilités mises a jour');
+        });
+
+    } else {
+        // 7. Ila l-localStorage khawi (l-admin mazal ma dkhel l-page dyal "Médecins")
+        console.error("Erreur: 'doctors' ma lqinahomch f localStorage.");
+        select.innerHTML = '<option value="">-- Erreur --</option>';
+        select.disabled = true;
+        container.innerHTML = '<p class="p-6 text-red-500 font-bold">Impossible de charger les médecins. Sir l-page "Médecins" 3emmer data 3ad rje3 hna.</p>';
+    }
+
     addToastStyles();
 });
 
-/**
- * Affiche un message de confirmation (toast)
- */
+// L-Functions dyal l-Toast (bqa nafsso)
 function showConfirmation(message) {
     const existingToast = document.querySelector('.toast-message');
     if (existingToast) {
@@ -145,7 +134,7 @@ function showConfirmation(message) {
     const toast = document.createElement('div');
     toast.className = 'toast-message';
     toast.textContent = message;
-    
+
     document.body.appendChild(toast);
 
     setTimeout(() => {
@@ -162,9 +151,6 @@ function showConfirmation(message) {
     }, 3000);
 }
 
-/**
- * Injecte le CSS nécessaire pour le toast dans le <head>
- */
 function addToastStyles() {
     const style = document.createElement('style');
     style.innerHTML = `
