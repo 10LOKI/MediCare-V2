@@ -107,69 +107,8 @@
         </div>
     </section>
 
-    <script>
-        //------------------------------------------------------- Rendez-vous V2 ----------------------------------------------------------------
-
-        function listRendezVous() {
-
-            let list_Rendez_Vous = document.querySelector("#tbody")
-
-            let array = []
-            array = JSON.parse(localStorage.getItem('appointments'))
-            let tr = document.createElement('tr')
-            const Status = appointments.filter(a => a.status === 'Traitemant');
-            tr.classList.add(item.Status === 'accepte' ? 'bg-green-50' :
-            item.status === 'refuse' ? 'bg-red-50' : 'bg-white');
-            tr.innerHTML = array.map(item => `
-        <tr class:"border-b border-gray-200 shadow-md">
-            <td class="px-6 py-4">${item.fullName}</td>
-            <td class="px-6 py-4">${item.doctor}</td>
-            <td class="px-6 py-4">${item.date}</td>
-            <td class="px-6 py-4">${item.time}</td>
-            <td class="bg-amber-200 shadow-md flex flex-row items-center justify-evenly">
-                <div class="bg-center bg-no-repeat bg-[url('../../v1Medicare/images/verifie.png')] flex items-center justify-center p-1 cursor-pointer w-10/12 h-10 hover:scale-110 duration-700 transition-all "></div>
-                <div class="bg-center bg-no-repeat bg-[url('../../v1Medicare/images/supprimer.png')] flex items-center justify-center p-1 cursor-pointer w-10/12 h-10 hover:scale-80 duration-700 transition-all"></div>
-            </td>
-        </tr>
-  `).join('');
-            list_Rendez_Vous.appendChild(tr)
-            list_Rendez_Vous = ''
-        }
-        listRendezVous()
-
-
-
-        const closeThisNav = document.querySelector(".close");
-        const navDashbord = document.querySelector(".navDashbord");
-
-        closeThisNav.textContent = '<';
-
-        closeThisNav.addEventListener('click', () => {
-            navDashbord.classList.toggle('hidden');
-            closeThisNav.classList.toggle('rounded-l-full');
-            closeThisNav.classList.toggle('rounded-r-full');
-        });
-
-        function refuseAppointment(id) {
-            let appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
-            if (confirm('Êtes-vous sûr de refuser ce rendez-vous ?')) {
-                appointments = appointments.map(apt =>
-                    apt.id === id ? { ...apt, status: 'refuse' } : apt
-                );
-                localStorage.setItem('appointments', JSON.stringify(appointments));
-                displayAppointments();
-            }
-        }
-
-        function acceptAppointment(id) {
-            let appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
-            if (confirm('Êtes-vous sûr d’accepter ce rendez-vous ?')) {
-                appointments = appointments.map(apt =>
-                    apt.id === id ? { ...apt, status: 'accepte' } : apt
-                );
-                localStorage.setItem('appointments', JSON.stringify(appointments));
-            }
-        }
+    <script src="../scripts/">
+        
 
     </script>
 </body>
