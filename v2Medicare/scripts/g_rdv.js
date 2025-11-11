@@ -3,11 +3,17 @@
     const arrayRdv = JSON.parse(localStorage.getItem('appointments') || '[]');
 
 function listRendezVous() {
-    const list_Rendez_Vous = document.querySelector("#tbody");
 
     if (!list_Rendez_Vous) return;
     else {
-        list_Rendez_Vous.innerHTML = arrayRdv.map(item => `
+        table_List()
+    }        
+}
+listRendezVous()
+
+function table_List(){
+    const list_Rendez_Vous = document.querySelector("#tbody");
+    list_Rendez_Vous.innerHTML = arrayRdv.map(item => `
         <tr class="border-b shadow-md text-md md:text-xl lg:text-2xl text-blue-950 bg-blue-300">
             <td class="px-1 md:px-3 lg:px-6 py-3">${item.fullName}</td>
             <td class="px-1 md:px-3 lg:px-6 py-3">${item.doctor}</td>
@@ -29,10 +35,7 @@ function listRendezVous() {
         </td>
         </tr>
     `).join('');
-    }        
-}
-listRendezVous()
-            
+}   
 let status_rdv = document.getElementById("status")
 
 function refus(id_State){
@@ -42,9 +45,9 @@ function refus(id_State){
         );
         localStorage.setItem('appointments', JSON.stringify(appointments));
         status_rdv = JSON.parse(localStorage.appointments)
-        listRendezVous()
+        table_List()
     }
-    listRendezVous()
+
 }
 
 
@@ -54,7 +57,7 @@ function accept_Rdv(id_State){
             apt.id === id_State ? { ...apt, status_rdv: 'accepté' } : apt
         );
         localStorage.setItem('appointments', JSON.stringify(appointments));
-        listRendezVous()
+        table_List()
     }
-    listRendezVous()
+
 }
