@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
             day: selectedDay,
             reason: document.getElementById('reason').value.trim(),
             createdAt: new Date().toISOString(),
-            status_rdv: "Traitement"
+            statusRdv: "Traitement"
         };
         
         saveAppointment(formData);
@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p><span class="text-gray-400">Jour demandé:</span> ${apt.day}</p>
                         <p><span class="text-gray-400">Téléphone:</span> ${apt.phone}</p>
                         ${apt.reason ? `<p class="mt-2"><span class="text-gray-400">Motif:</span> ${apt.reason}</p>` : ''}
-                        <p class="mt-2"><span class="text-gray-400">Status:</span> ${apt.status_rdv}</p>
+                        <p class="mt-2"><span class="text-gray-400">Status:</span> ${apt.statusRdv}</p>
                     </div>
                     `;
 

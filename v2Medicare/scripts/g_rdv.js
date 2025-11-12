@@ -12,10 +12,9 @@ function htmlTable(table) {
     const listRendezVous = document.querySelector("#tbody")
     listRendezVous.innerHTML = table.map(item => `
         <tr class="border-b-8 text-lg text-blue-950 bg-blue-600/50">
+            <td class="px-1 md:px-3 lg:px-6 py-3">${item.doctor}</td>
             <td class="px-1 md:px-3 lg:px-6 py-3">${item.fullName}</td>
-            <td class="px-1 md:px-3 lg:px-6 py-3">${item.doctors}</td>
-            <td class="px-1 md:px-3 lg:px-6 py-3">${item.date}</td>
-            <td class="px-1 md:px-3 lg:px-6 py-3">${item.time}</td>
+            <td class="px-1 md:px-3 lg:px-6 py-3">${item.day}</td>
             
             <td class="flex flex-col md:flex-row items-center md:justify-evenly">
                 <p class="flex items-center justify-center cursor-pointer w-8 h-14">
