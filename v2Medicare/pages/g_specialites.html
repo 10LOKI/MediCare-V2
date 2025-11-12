@@ -9,8 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-
-
+    
 
 
 
@@ -18,61 +17,62 @@
 
 <body>
     <section class="bg-gray-900 w-[100vw] h-[100vh] flex overflow-x-hidden">
-        <div class="bg-slate-100 grid grid-flow-col grid-rows-6 w-[300px] h-full px-4 ">
-            <a class="row-span-1 w-full h-full h-fit flex justify-center items-center" href="index.html">
+         <div class="bg-slate-100 grid grid-flow-col grid-rows-6 w-[300px] h-full px-4 ">
+            <a class="row-span-1 w-full h-full  flex justify-center items-center" href="index.html">
                 <div class="text-gray-900 text-xl font-bold">MED <span class="font-bold text-blue-500">Care+</span>
                 </div>
             </a>
-            <nav class="row-start-2 row-end-5 grid grid-rows-5 gap-2">
-                <label class="relative cursor-pointer">
-                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <div
-                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
-                        <i class="ri-dashboard-horizontal-fill mx-7"></i> Dashboard
-                    </div>
-                </label>
-                <label class="relative cursor-pointer">
-                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <div
-                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
-                        <i class="ri-medicine-bottle-fill mx-7"></i> Médecins
-                    </div>
-                </label>
-                <label class="relative cursor-pointer">
-                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <div
-                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
-                        <i class="ri-test-tube-fill mx-7"></i> Spécialité
-                    </div>
-                </label>
-                <label class="relative cursor-pointer">
-                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <div
-                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
-                        <i class="ri-pulse-fill mx-7"></i> Disponibilité
-                    </div>
-                </label>
-                <label class="relative cursor-pointer">
-                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <div
-                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
-                        <i class="ri-calendar-fill mx-7"></i> Rendez-vous
-                    </div>
-                </label>
+            <nav class="row-start-2 row-end-5 grid grid-rows-5">
+                <a href="../acceuil.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-dashboard-horizontal-fill  mx-7"></i> Dashboard
+            </a>
+                <a href="g_medcins.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-medicine-bottle-fill mx-7"></i> Medecins
+        </a>
+                <a href="g_specialites.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-test-tube-fill mx-7"></i> Specialité
+    </a>
+                <a href="g_disponibilites.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-pulse-fill mx-7"></i> Disponibilité
+</a>
+                <a href="g_rendez-vous.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-calendar-fill mx-7"></i> Rendez-vous
+</a>
             </nav>
-
-            <div
+            <a href="loginPage.html"
                 class="relative top-10 row-start-6 row-end-7 flex text-gray-900  items-center hover:text-blue-500 cursor-pointer w-fit h-fit transition bltext-blue-500 cursor-pointer5 duration-300">
                 <i class="ri-logout-circle-r-line text-3xl "></i>
                 Log Out
-            </div>
+        </a>
         </div>
         <div id="bodySec" class="flex justify-center items-center w-full h-full">
             <div class="bg-white h-[90%] w-[90%] rounded-lg shadow-sm flex flex-col p-6">
-                <!-- <div id="container"
-                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full h-full overflow-y-auto scroll-smooth p-8">
-                </div> -->
-                <div class="h-full bg-gray-900 w-full  rounded-lg flex justify-center items-center">
+                <div class="flex h-1/3 w-full">
+                    <div class="w-[30%] h-[80%]">
+                        <div
+                            class="inline-grid shadow-md bg-[#111] text-white rounded-xl border border-gray-500  p-4 w-full h-full">
+                            <div id="cmpt" class="inline-grid w-full grid-cols-1 gap-x-4 px-6 py-4">
+                                <div class="text-gray-400 text-sm">Total de spécialités </div>
+                                <div id="ttl"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full h-[80%] pl-10">
+                        <div
+                            class="inline-grid shadow-md  bg-[#fff]  text-white rounded-xl border border-gray-500  p-4 w-full h-full">
+                            <div id="cmpt" class="inline-grid w-full grid-cols-1 gap-x-4 px-6 py-4">
+                                <div class="text-gray-400 text-sm">Total de spécialités </div>
+                                <div> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" bg-gray-900 w-full h-2/3 rounded-lg flex justify-center items-center">
                     <div class=" h-[80%] w-[90%] rounded-lg flex-col  p-5 ">
                         <div class="flex justify-between h-fit">
                             <div class="relative w-full">
@@ -85,7 +85,8 @@
                                 class="w-20 h-10 text-center text-white rounded-2xl bg-green-600 ml-10">Ajouté
                             </button>
                         </div>
-                        <div id="sp-txt" class="flex  bg-white w-full h-[60%] rounded-2xl mt-10 p-5 overflow-x-scroll ">
+                        <div id="sp-txt"
+                            class="flex flex-wrap bg-white w-full h-[60%] rounded-2xl mt-10 items-center overflow-y-scroll p-[30px] ">
                         </div>
                     </div>
                 </div>
@@ -109,14 +110,11 @@
                 if (specialte.length === 0) {
                     specialte = data.specialties;
                     localStorage.setItem('specialties', JSON.stringify(specialte));
-                    renderSpec();
                 }
-            })
-        fetch('../scripts/Doctors-v2.json')
-            .then((response) => response.json())
-            .then((data) => doctors = data.doctors)
-            .catch((error) => console.error('Erreur lors du chargement du JSON:', error));
 
+                renderSpec()
+                compteur()
+            })
         function ajouteSpec() {
             if (input.value.trim() === '') {
                 alert('Veuillez entrer une spécialité')
@@ -132,9 +130,11 @@
 
         }
         function renderSpec() {
+            containerTxt.innerHTML = ''
             specialte.forEach((specialte, index) => {
+
                 const isUsed = doctors.some(doc => doc.specialty === specialte);
-                console.log(isUsed)
+                console.log("isUsed",isUsed)
                 const specDiv = document.createElement('div')
                 specDiv.className = 'w-fit h-10 flex justify-between items-center bg-blue-500 rounded-lg p-3 mb-2 mx-3 hover:bg-blue-900 transition-colors duration-200'
 
@@ -145,13 +145,12 @@
                 specText.className = 'text-white font-medium'
                 specText.textContent = specialte
 
-                const deleteBtn = document.createElement('button')
-                if (!isUsed) {
-                    deleteBtn.classList.add('text-gray-500', 'cursor-not-allowed');
+                const deleteBtn = document.createElement('i')
+                if (isUsed) {
+                    deleteBtn.classList.add('ri-close-line','text-gray-400', 'cursor-not-allowed','ml-5');
                     deleteBtn.disabled = true;
-                    deleteBtn.title = 'Cette spécialité est utilisée par un médecin';
                 } else {
-                    deleteBtn.classList.add('text-gray-900', 'hover:text-red-700');
+                    deleteBtn.classList.add('ri-close-line','text-gray-900', 'hover:text-red-700','ml-5','cursor-pointer');
                     deleteBtn.onclick = () => popupSwt(index);
                 }
 
@@ -171,7 +170,6 @@
             console.log("compt", cmpt)
             ttl.className = "text-4xl font-extrabold leading-tight "
             ttl.textContent = cmpt
-            renderSpec()
         }
         function popupSwt(index) {
             const swalWithBootstrapButtons = Swal.mixin({
@@ -212,8 +210,6 @@
             });
 
         }
-
-    </script>
 
     </script>
 </body>
