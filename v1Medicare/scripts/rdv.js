@@ -1,26 +1,29 @@
 const dateInput = document.getElementById('date');
 const today = new Date().toISOString().split('T')[0];
 dateInput.min = today;
+
 const form = document.getElementById('appointmentForm');
 const inputs = form.querySelectorAll('input[required], select[required]');
+const doctorSelect = document.getElementById('doctors');
+const availabilityContainer = document.getElementById('availabilityContainer');
+const daysRadioGroup = document.getElementById('daysRadioGroup');
 
-function getDoctors() {//v2
-    const doctors =JSON.parse(localStorage.getItem('doctors') || '[]') 
+function getDoctors() {//v2 
+    const doctors = JSON.parse(localStorage.doctors || '[]')
     let docteurs = document.getElementById('doctors')
     for (let item = 0; item < doctors.length; item++) {
-        docteurs.innerHTML += `<option value="${doctors[item].name}" class="text-center text-bold text-xl bg-gray-600 w-80"> ${doctors[item].name} - ${doctors[item].specialty}
-    </option>`;
+        docteurs.innerHTML += <option value="${doctors[item].name}" class="text-center text-bold text-xl bg-gray-600 w-80"> ${doctors[item].name} - ${doctors[item].specialty} </option>;
     }
 }
 getDoctors()
+
+
 function validateField(field) {
-
-    const doctors =JSON.parse(localStorage.getItem('doctors') || '[]')
-
     const formGroup = field.closest('.form-group');
     const errorMessage = formGroup.querySelector('.error-message');
     let isValid = true;
     let message = '';
+
     switch (field.id) {
         case 'fullName':
             if (field.value.trim().length < 2) {
@@ -41,96 +44,135 @@ function validateField(field) {
             break;
 
         case 'phone':
-            const phoneRegex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+            const phoneRegex = /^(05|06|07)\d{8}$/;
             if (!phoneRegex.test(field.value.trim())) {
                 isValid = false;
-                message = 'Veuillez entrer un numéro de téléphone valide';
-            }
-            break;
-
-        case 'doctor':
-            if (!field.value) {
-                isValid = false;
-                message = 'Veuillez sélectionner un médecin';
-            }
-            break;
-
-        case 'date':
-            const selectedDate = new Date(field.value + 'T00:00:00');
-            const todayDate = new Date();
-            todayDate.setHours(0, 0, 0, 0);
-            if (!field.value) {
-                isValid = false;
-                message = 'Veuillez sélectionner une date';
-            } else if (selectedDate < todayDate) {
-                isValid = false;
-                message = 'La date ne peut pas être dans le passé';
-            }
-            break;
-
-        case 'time':
-            if (!field.value) {
-                isValid = false;
-                message = 'Veuillez sélectionner une heure';
+                message = 'Format valide: 0612345678 (10 chiffres)';
             }
             break;
     }
+
     if (!isValid) {
-        field.classList.remove('border-gray-600');
         field.classList.add('border-red-500');
         errorMessage.textContent = message;
         errorMessage.classList.remove('hidden');
     } else {
         field.classList.remove('border-red-500');
-        field.classList.add('border-gray-600');
         errorMessage.classList.add('hidden');
     }
 
     return isValid;
 }
-inputs.forEach(input => {
-    input.addEventListener('blur', () => validateField(input));
-    input.addEventListener('input', () => {
-        if (input.classList.contains('border-red-500')) {
-            validateField(input);
-        }
-    });
+
+function validateDays() {
+    const errorMessage = availabilityContainer.querySelector('.error-message');
+    const checkedDay = daysRadioGroup.querySelector('input[name="appointmentDay"]:checked');
+
+    if (availabilityContainer.classList.contains('hidden') || !doctorSelect.value) {
+        errorMessage.classList.add('hidden');
+        return true;
+    }
+
+    if (!checkedDay) {
+        errorMessage.textContent = 'Veuillez sélectionner un jour';
+        errorMessage.classList.remove('hidden');
+        return false;
+    } else {
+        errorMessage.classList.add('hidden');
+        return true;
+    }
+}
+
+// -------------------- HANDLE DOCTOR CHANGE --------------------
+doctorSelect.addEventListener('change', () => {
+    const selectedDoctorId = doctorSelect.value;
+
+    daysRadioGroup.innerHTML = '';
+    availabilityContainer.classList.add('hidden');
+
+    if (!selectedDoctorId) return;
+
+    const availabilityKey = `availability_${selectedDoctorId}`;
+    const availableDays = JSON.parse(localStorage.getItem(availabilityKey) || '[]');
+    const errorMsg = availabilityContainer.querySelector('.error-message');
+
+    if (availableDays.length > 0) {
+        availableDays.forEach((day, i) => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'flex items-center';
+
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'appointmentDay';
+            radio.id = `day_${i}`;
+            radio.value = day;
+            radio.required = true;
+            radio.className = 'w-4 h-4 text-blue-600 focus:ring-blue-500';
+
+            const label = document.createElement('label');
+            label.htmlFor = `day_${i}`;
+            label.textContent = day;
+            label.className = 'ml-2 text-sm text-gray-300';
+
+            wrapper.appendChild(radio);
+            wrapper.appendChild(label);
+            daysRadioGroup.appendChild(wrapper);
+        });
+
+        availabilityContainer.classList.remove('hidden');
+        errorMsg.classList.add('hidden');
+    } else {
+        errorMsg.textContent = "Ce médecin n'a pas de disponibilités pour le moment.";
+        errorMsg.classList.remove('hidden');
+        availabilityContainer.classList.remove('hidden');
+    }
 });
-form.addEventListener('submit', function (e) {
+
+// -------------------- SUBMIT --------------------
+form.addEventListener('submit', e => {
     e.preventDefault();
+
     let isFormValid = true;
     inputs.forEach(input => {
-        if (!validateField(input)) {
-            isFormValid = false;
-        }
+        if (!validateField(input)) isFormValid = false;
     });
+    if (!validateDays()) isFormValid = false;
 
-    if (!isFormValid) {
-        return;
-    }
-    // this is form getting values
-    const formData = {
+    if (!isFormValid) return;
+
+    const selectedDay = daysRadioGroup.querySelector('input[name="appointmentDay"]:checked').value;
+    const selectedDoctorOption = doctorSelect.options[doctorSelect.selectedIndex];
+    const selectedDoctorName = selectedDoctorOption.text;
+
+    const appointment = {
         id: Date.now(),
         fullName: document.getElementById('fullName').value.trim(),
         email: document.getElementById('email').value.trim(),
         phone: document.getElementById('phone').value.trim(),
-        doctors: document.getElementById('doctors').value,
-        date: document.getElementById('date').value,
-        time: document.getElementById('time').value,
+        doctor: selectedDoctorName,
+        day: selectedDay,
         reason: document.getElementById('reason').value.trim(),
         createdAt: new Date().toISOString(),
         statusRdv: "Traitement"
     };
-    saveAppointment(formData);
+
+    saveAppointment(appointment);
     showModal();
     form.reset();
+
+    availabilityContainer.classList.add('hidden');
+    daysRadioGroup.innerHTML = '';
+
     displayAppointments();
 });
+
+// -------------------- localsorage set --------------------
 function saveAppointment(appointment) {
-    let appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+    const appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
     appointments.push(appointment);
     localStorage.setItem('appointments', JSON.stringify(appointments));
 }
+
 function displayAppointments() {
     const appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
     const container = document.getElementById('appointmentsContainer');
@@ -144,77 +186,65 @@ function displayAppointments() {
     listSection.classList.remove('hidden');
     container.innerHTML = '';
 
-    appointments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(apt => {
-        const aptCard = document.createElement('div');
-        aptCard.className = 'bg-gray-800/50 backdrop-blur-lg rounded-2xl p-6 border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300';
+    appointments
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .forEach(apt => {
+            const aptCard = document.createElement('div');
+            aptCard.className = 'bg-gray-800/50 p-6 rounded-2xl border border-blue-500/20';
 
-        const dateFormatted = new Date(apt.date).toLocaleDateString('fr-FR', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
+            aptCard.innerHTML = `
+                <div class="flex justify-between items-start mb-3">
+                    <div>
+                        <h3 class="text-lg font-bold text-white">${apt.doctor}</h3>
+                        <p class="text-blue-400 text-sm">${apt.day}</p>
+                    </div>
+                    <button onclick="deleteAppointment(${apt.id})" class="text-red-400 hover:text-red-300">
+                        🗑
+                    </button>
+                </div>
+                <div class="text-gray-300 text-sm space-y-1">
+                    <p><span class="text-gray-400">Patient:</span> ${apt.fullName}</p>
+                    <p><span class="text-gray-400">Email:</span> ${apt.email}</p>
+                    <p><span class="text-gray-400">Téléphone:</span> ${apt.phone}</p>
+                    ${apt.reason ? `<p><span class="text-gray-400">Motif:</span> ${apt.reason}</p>` : ''}
+                    <p><strong>Status:</strong> ${apt.statusRdv}</p>
+                </div>
+            `;
+            container.appendChild(aptCard);
         });
-
-        aptCard.innerHTML = `
-                    <div class="flex justify-between items-start mb-3">
-                        <div>
-                            <h3 class="text-lg font-bold text-white">${apt.doctors}</h3>
-                            <p class="text-blue-400 text-sm">${dateFormatted} à ${apt.time}</p>
-                        </div>
-                        <button onclick="deleteAppointment(${apt.id})" 
-                            class="text-red-400 hover:text-red-300 transition-colors duration-300">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="text-gray-300 text-sm space-y-1">
-                        <p><span class="text-gray-400">Patient:</span> ${apt.fullName}</p>
-                        <p><span class="text-gray-400">Email:</span> ${apt.email}</p>
-                        <p><span class="text-gray-400">Téléphone:</span> ${apt.phone}</p>
-                        ${apt.reason ? `<p class="mt-2"><span class="text-gray-400">Motif:</span> ${apt.reason}</p>` : ''}
-                        <td class="px-6 py-4">Status: ${apt.statusRdv}</td>
-                    </div>
-                `;
-
-        container.appendChild(aptCard);
-    });
 }
 
-//<option value="Dr. Sarah Martin">Dr. Sarah Martin - Cardiologue</option>
 function deleteAppointment(id) {
     if (confirm('Êtes-vous sûr de vouloir annuler ce rendez-vous ?')) {
         let appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
-        appointments = appointments.filter(apt => apt.id !== id);
+        appointments = appointments.filter(a => a.id !== id);
         localStorage.setItem('appointments', JSON.stringify(appointments));
         displayAppointments();
     }
 }
+
+// -------------------- MODAL med --------------------
 function showModal() {
     const modal = document.getElementById('successModal');
     const modalContent = document.getElementById('modalContent');
 
     modal.classList.remove('hidden');
-    modal.style.cursor = 'pointer';
     setTimeout(() => {
         modalContent.style.transform = 'scale(1)';
         modalContent.style.opacity = '1';
     }, 10);
 }
+
 function closeModal() {
     const modal = document.getElementById('successModal');
     const modalContent = document.getElementById('modalContent');
-
     modalContent.style.transform = 'scale(0.95)';
     modalContent.style.opacity = '0';
-
-    setTimeout(() => {
-        modal.classList.add('hidden');
-    },10);
+    setTimeout(() => modal.classList.add('hidden'), 100);
 }
-document.getElementById('successModal').addEventListener('click', function (e) {
-    if (e.target === this) {
-        closeModal();
-    }
+
+document.getElementById('successModal').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeModal();
 });
+
 displayAppointments();
