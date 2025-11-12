@@ -2,7 +2,6 @@ const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dim
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Kanjibo l-data direct men localStorage, machi men l-JSON
     const storedDoctors = localStorage.getItem("doctors");
 
     const container = document.getElementById('medcinCartes');
@@ -12,14 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("Erreur : Ma kaynch l-container 'medcinCartes' wla 'doctor-filter-select'");
         return;
     }
-
-    // 2. Kan checkiw wach localStorage fih data
-    if (storedDoctors) {
-        
-        // 3. Kan 7ewlo data men string l-array
+    if (storedDoctors) 
+        {
         const doctorsData = JSON.parse(storedDoctors);
 
-        // 4. Kan 3emro l-dropdown b l-lista dyal tbiba men localStorage
         select.innerHTML = '<option value="">-- Khtar Medcin --</option>';
         doctorsData.forEach(medcin => {
             const option = document.createElement('option');
@@ -27,8 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
             option.textContent = `${medcin.name} (${medcin.specialty})`;
             select.appendChild(option);
         });
-
-        // 5. Kan tssento l-dropdown (had l-code bqa nafsso)
         select.addEventListener('change', () => {
             const medcinId = select.value;
             container.innerHTML = '';
@@ -36,8 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!medcinId) {
                 return;
             }
-
-            // Kan 9elbo 3la tbib f l-lista dyal localStorage
             const medcin = doctorsData.find(doc => doc.id == medcinId);
             if (!medcin) return;
 
@@ -96,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
             container.appendChild(medcinDiv);
         });
 
-        // 6. Listener dyal l-Sauvegarde (bqa nafsso)
         container.addEventListener('click', (e) => {
             const sauvegardBtn = e.target.closest('.save-btn');
             if (!sauvegardBtn) return;
@@ -114,7 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     } else {
-        // 7. Ila l-localStorage khawi (l-admin mazal ma dkhel l-page dyal "Médecins")
         console.error("Erreur: 'doctors' ma lqinahomch f localStorage.");
         select.innerHTML = '<option value="">-- Erreur --</option>';
         select.disabled = true;
@@ -124,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
     addToastStyles();
 });
 
-// L-Functions dyal l-Toast (bqa nafsso)
 function showConfirmation(message) {
     const existingToast = document.querySelector('.toast-message');
     if (existingToast) {
