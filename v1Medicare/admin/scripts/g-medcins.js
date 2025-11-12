@@ -226,5 +226,3 @@ ajouterModel.addEventListener("click", function (e) {
         ajouterModel.classList.add("hidden");
     }
 })
-
-localStorage.clear()

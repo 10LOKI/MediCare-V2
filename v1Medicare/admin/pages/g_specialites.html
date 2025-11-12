@@ -9,11 +9,6 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
 
 
 
@@ -42,7 +37,7 @@
     </a>
                 <a href="g_disponibilites.html"
                     class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
-                    <i class="ri-pulse-fill hover:ri-pulse-fill mx-7"></i> Disponibilité
+                    <i class="ri-pulse-fill mx-7"></i> Disponibilité
 </a>
                 <a href="g_rendez-vous.html"
                     class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
@@ -106,15 +101,17 @@
         const container = document.getElementById('container')
         const ttl = document.getElementById("ttl")
         let specialte = JSON.parse(localStorage.getItem('specialties')) || []
-        let doctors = []
+        let doctors = JSON.parse(localStorage.getItem('doctors')) || []
         fetch('../scripts/Doctors-v2.json')
             .then((response) => response.json())
             .then((data) => {
-                doctors = data.doctors
-                localStorage.setItem('doctors', JSON.stringify(doctors));
                 if (specialte.length === 0) {
                     specialte = data.specialties;
                     localStorage.setItem('specialties', JSON.stringify(specialte));
+                }
+                if (doctors.length === 0) {
+                    doctors = data.doctors;
+                    localStorage.setItem('doctors', JSON.stringify(doctors));
                 }
 
                 renderSpec()
@@ -155,7 +152,7 @@
                     deleteBtn.classList.add('ri-close-line','text-gray-400', 'cursor-not-allowed','ml-5');
                     deleteBtn.disabled = true;
                 } else {
-                    deleteBtn.classList.add('ri-close-line','text-gray-900', 'hover:text-red-700','ml-5');
+                    deleteBtn.classList.add('ri-close-line','text-gray-900', 'hover:text-red-700','ml-5','cursor-pointer');
                     deleteBtn.onclick = () => popupSwt(index);
                 }
 
