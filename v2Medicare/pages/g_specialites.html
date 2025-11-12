@@ -76,7 +76,8 @@
                     <div class=" h-[80%] w-[90%] rounded-lg flex-col  p-5 ">
                         <div class="flex justify-between h-fit">
                             <div class="relative w-full">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="ri-bookmark-line"></i></span>
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i
+                                        class="ri-bookmark-line"></i></span>
                                 <input id="input-txt" type="text" placeholder="Veuillez saisir un specialté ..."
                                     class="text-black border-2 border-white focus:outline-none h-10 bg-white rounded-[10px] px-[30px] py-[10px] w-[80%] active:shadow-[inset_2px_2px_15px_#8707ff]" />
                             </div>
@@ -84,8 +85,8 @@
                                 class="w-20 h-10 text-center text-white rounded-2xl bg-green-600 ml-10">Ajouté
                             </button>
                         </div>
-                        <div id="sp-txt"
-                            class="flex  bg-white w-full h-[60%] rounded-2xl mt-10 p-5 overflow-x-scroll "></div>
+                        <div id="sp-txt" class="flex  bg-white w-full h-[60%] rounded-2xl mt-10 p-5 overflow-x-scroll ">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,37 +98,25 @@
         const btnTxt = document.getElementById('btn-txt')
         const containerTxt = document.getElementById('sp-txt')
         const container = document.getElementById('container')
+        const ttl = document.getElementById("ttl")
         let specialte = JSON.parse(localStorage.getItem('specialties')) || []
-        renderSpec()
+        let doctors = []
         fetch('../scripts/Doctors-v2.json')
             .then((response) => response.json())
-            .then(data => {
-                let doctors = data.doctors
-                doctors.forEach(doc => {
-                    const cardDiv = document.createElement('div')
-                    cardDiv.className = ('bg-gray-900 shadow-lg w-[200px] h-[250px] grid content-center rounded-3xl hover:scale-105 transition-transform duration-300 px-2')
-                    const cardDivInside = document.createElement('div')
-                    cardDivInside.className = ('w-[100%] flex justify-center')
-                    const cardDivInsideTwo = document.createElement('div')
-                    cardDivInsideTwo.className = ('w-[100%] p-4 grid justify-center')
-                    const cardImg = document.createElement('img')
-                    cardImg.className = ('bg-cover bg-center w-[80%] h-[100%] rounded-lg bottom-5')
-                    cardImg.src = doc.image
-                    cardImg.alt = doc.name
-                    const cardH2 = document.createElement('h2')
-                    cardH2.className = ('font-bold text-xs text-blue-500')
-                    cardH2.textContent = doc.name
-                    const cardP = document.createElement('p')
-                    cardP.textContent = doc.specialty
-                    cardP.className = ('text-blue-500 text-xs')
-                    cardDiv.appendChild(cardDivInside)
-                    cardDiv.appendChild(cardDivInsideTwo)
-                    cardDivInside.appendChild(cardImg)
-                    cardDivInsideTwo.appendChild(cardH2)
-                    cardDivInsideTwo.appendChild(cardP)
-                    container.appendChild(cardDiv)
-                });
+            .then((data) => {
+                doctors = data.doctors
+                localStorage.setItem('doctors', JSON.stringify(doctors));
+                if (specialte.length === 0) {
+                    specialte = data.specialties;
+                    localStorage.setItem('specialties', JSON.stringify(specialte));
+                    renderSpec();
+                }
             })
+        fetch('../scripts/Doctors-v2.json')
+            .then((response) => response.json())
+            .then((data) => doctors = data.doctors)
+            .catch((error) => console.error('Erreur lors du chargement du JSON:', error));
+
         function ajouteSpec() {
             if (input.value.trim() === '') {
                 alert('Veuillez entrer une spécialité')
@@ -139,33 +128,51 @@
             localStorage.setItem('specialties', JSON.stringify(specialte))
             input.value = ''
             renderSpec()
+            compteur()
+
         }
         function renderSpec() {
-            containerTxt.innerHTML = ''
-            specialte.forEach((spec, index) => {
+            specialte.forEach((specialte, index) => {
+                const isUsed = doctors.some(doc => doc.specialty === specialte);
+                console.log(isUsed)
                 const specDiv = document.createElement('div')
-                specDiv.className = 'w-30 h-10 flex justify-between items-center border- bg-white rounded-lg p-3 mb-2 mx-3 hover:bg-blue-50 transition-colors duration-200'
+                specDiv.className = 'w-fit h-10 flex justify-between items-center bg-blue-500 rounded-lg p-3 mb-2 mx-3 hover:bg-blue-900 transition-colors duration-200'
+
+                const iconTag = document.createElement('i')
+                iconTag.className = 'ri-bookmark-line  mr-[10px]'
 
                 const specText = document.createElement('span')
-                specText.className = 'text-gray-900 font-medium'
-                specText.textContent = spec
+                specText.className = 'text-white font-medium'
+                specText.textContent = specialte
 
                 const deleteBtn = document.createElement('button')
-                deleteBtn.className = 'text-red-500 hover:text-red-700 font-bold text-xl'
-                deleteBtn.innerHTML = '&times;'
-                deleteBtn.onclick = () => popupSwt(index)
+                if (!isUsed) {
+                    deleteBtn.classList.add('text-gray-500', 'cursor-not-allowed');
+                    deleteBtn.disabled = true;
+                    deleteBtn.title = 'Cette spécialité est utilisée par un médecin';
+                } else {
+                    deleteBtn.classList.add('text-gray-900', 'hover:text-red-700');
+                    deleteBtn.onclick = () => popupSwt(index);
+                }
 
+                specDiv.appendChild(iconTag)
                 specDiv.appendChild(specText)
                 specDiv.appendChild(deleteBtn)
                 containerTxt.appendChild(specDiv)
             })
         }
-
         input.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 ajouteSpec()
             }
         })
+        function compteur() {
+            let cmpt = specialte.length
+            console.log("compt", cmpt)
+            ttl.className = "text-4xl font-extrabold leading-tight "
+            ttl.textContent = cmpt
+            renderSpec()
+        }
         function popupSwt(index) {
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
@@ -176,33 +183,37 @@
             });
 
             swalWithBootstrapButtons.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
+                title: "Es-tu sûr ?",
+                text: "Cette action est irréversible !",
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonText: "Yes, delete it!",
-                cancelButtonText: "No, cancel!",
+                confirmButtonText: "Oui, supprime-le !",
+                cancelButtonText: "Non, annuler !",
                 reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
                     specialte.splice(index, 1);
                     localStorage.setItem('specialties', JSON.stringify(specialte));
                     renderSpec();
+                    compteur()
 
                     swalWithBootstrapButtons.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
+                        title: "Supprimé !",
+                        text: "La spécialité a bien été supprimée.",
                         icon: "success"
                     });
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     swalWithBootstrapButtons.fire({
-                        title: "Cancelled",
-                        text: "Your imaginary file is safe :)",
+                        title: "Annulé",
+                        text: "La spécialité est toujours en sécurité :)",
                         icon: "error"
                     });
                 }
             });
+
         }
+
+    </script>
 
     </script>
 </body>
