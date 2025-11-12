@@ -1,11 +1,7 @@
 {
-  "pageInfo": {
-    "title": "Nos Médecins - MedCare+",
-    "heading": "Nos Médecins",
-    "subtitle": "Notre Équipe Médicale",
-    "description": "Découvrez notre équipe de professionnels de santé qualifiés et dévoués, prêts à prendre soin de vous."
-  },
-  "doctors": [
+  "specialties": ["Cardiology","Dermatology","Pediatrics"],
+
+  "doctors":[
     {
       "id": 1,
       "name": "Dr. Sara Boudlal",
@@ -13,23 +9,24 @@
       "image": "../../v1Medicare/images/doc01.jpg",
       "description": "description for medecin 1",
       "joursdispo": []
+
     },
     {
-    "id": 2,
-    "name": "Dr. Omar El Idrissi",
-    "specialty": "Dermatologist",
-    "image": "../../v1Medicare/images/doc02.jpg",
-    "description": "description for medecin 2",
-    "joursdispo": ["Lundi", "Mercredi", "Vendredi"]
-  },
-  {
-    "id": 3,
-    "name": "Dr. Ali Ford",
-    "specialty": "Pediatrician",
-    "image": "../../v1Medicare/images/doc03.jpg",
-    "description": "description for medecin 3",
-    "joursdispo": ["Mardi", "Jeudi", "Samedi", "Dimanche"]
-  },
+      "id": 2,
+      "name": "Dr. Omar El Idrissi",
+      "specialty": "Dermatologist",
+      "image": "../../v1Medicare/images/doc02.jpg",
+      "description": "description for medecin 2",
+      "joursdispo": []
+    },
+    {
+      "id": 3,
+      "name": "Dr. Ali Ford",
+      "specialty": "Pediatrician",
+      "image": "../../v1Medicare/images/doc03.jpg",
+      "description": "description for medecin 3",
+      "joursdispo": []
+    },
     {
       "id": 4,
       "name": "Dr. Houssem Ait Lahcen",

@@ -12,8 +12,18 @@ fetch("../scripts/Doctors-v2.json")
         else {
             console.log("deja localStorage 3amer")
         }
+
+        let storedSpecialties = localStorage.getItem("specialties");
+        if (storedSpecialties === null) {
+            localStorage.setItem("specialties", JSON.stringify(data.specialties));
+            
+        } else {
+            console.log("localStorage specialties déjà rempli");
+        }
+
         fillSpecSelect();
         displayData();
+
     })
 ////////////////////////////=> nlinkiw m3a specialities <=\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 function fillSpecSelect() {
@@ -90,6 +100,7 @@ function displayData() {
 
         console.log("hna kol tbib bouhdo affichage dyalo", doctors[i])
     }
+    
 }
 //////////////////////////=>nkhadmo 3la l button dyal ajouter un medecin <=\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 const ajouterModel = document.getElementById("ajouterModel");
@@ -216,8 +227,4 @@ ajouterModel.addEventListener("click", function (e) {
     }
 })
 
-
-
-
-
-
+localStorage.clear()
