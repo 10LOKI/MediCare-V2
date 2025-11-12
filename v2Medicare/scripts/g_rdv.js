@@ -11,8 +11,7 @@ function listRendezVous() {
         <tr class="border-b shadow-md text-md md:text-xl lg:text-2xl text-blue-950 bg-blue-300">
             <td class="px-1 md:px-3 lg:px-6 py-3">${item.fullName}</td>
             <td class="px-1 md:px-3 lg:px-6 py-3">${item.doctor}</td>
-            <td class="px-1 md:px-3 lg:px-6 py-3">${item.date}</td>
-            <td class="px-1 md:px-3 lg:px-6 py-3">${item.time}</td>
+            <td class="px-1 md:px-3 lg:px-6 py-3">${item.day}</td>
             
             <td class="flex flex-col md:flex-row bg-amber-400 items-center md:justify-evenly">
                 <div class="flex items-center justify-center cursor-pointer w-8 h-14">
