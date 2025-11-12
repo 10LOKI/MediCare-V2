@@ -9,7 +9,7 @@
       "id": 1,
       "name": "Dr. Sara Boudlal",
       "specialty": "Cardiologue",
-      "image": "../..//images/doc01.jpg",
+      "image": "../../images/doc01.jpg",
       "description": "description for medecin 1",
       "joursdispo": ["lundi"]
     },
@@ -17,7 +17,7 @@
       "id": 2,
       "name": "Dr. Omar El Idrissi",
       "specialty": "Dermatologist",
-      "image": "../../v1Medicare/images/doc02.jpg",
+      "image": "../../images/doc02.jpg",
       "description": "description for medecin 2",
       "joursdispo": ["lundi","mardi"]
     },
@@ -25,7 +25,7 @@
       "id": 3,
       "name": "Dr. Ali Ford",
       "specialty": "Pediatrician",
-      "image": "../../v1Medicare/images/doc03.jpg",
+      "image": "../../images/doc03.jpg",
       "description": "description for medecin 3",
       "joursdispo": []
     },
@@ -33,7 +33,7 @@
       "id": 4,
       "name": "Dr. Houssem Ait Lahcen",
       "specialty": "General Practitioner",
-      "image": "../../v1Medicare/images/doc04.jpg",
+      "image": "../../images/doc04.jpg",
       "description": "description for medecin 4",
       "joursdispo": []
     },
@@ -41,7 +41,7 @@
       "id": 5,
       "name": "Dr. Imane El Amrani",
       "specialty": "Gynecologist",
-      "image": "../../v1Medicare/images/doc05.jpg",
+      "image": "../../images/doc05.jpg",
       "description": "description for medecin 5",
       "joursdispo": []
     },
@@ -49,7 +49,7 @@
       "id": 6,
       "name": "Dr. Karim Bensalem",
       "specialty": "Neurologist",
-      "image": "../../v1Medicare/images/doc06.jpg",
+      "image": "../../images/doc06.jpg",
       "description": "description for medecin 6",
       "joursdispo": []
     },
@@ -57,7 +57,7 @@
       "id": 7,
       "name": "Dr. Rachid El Fassi",
       "specialty": "Orthopedic Surgeon",
-      "image": "../../v1Medicare/images/doc07.jpg",
+      "image": "../../images/doc07.jpg",
       "description": "description for medecin 7",
       "joursdispo": []
     },
@@ -65,7 +65,7 @@
       "id": 8,
       "name": "Dr. Nadia Moujahid",
       "specialty": "Ophthalmologist",
-      "image": "../../v1Medicare/images/doc08.jpg",
+      "image": "../../images/doc08.jpg",
       "description": "description for medecin 8",
       "joursdispo": []
     }

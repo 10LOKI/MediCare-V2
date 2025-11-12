@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         errorOption.disabled = true;
         doctorSelect.appendChild(errorOption);
     }
-    }
+
     doctorSelect.addEventListener('change', () => {
         const selectedDoctorId = doctorSelect.value;
         
