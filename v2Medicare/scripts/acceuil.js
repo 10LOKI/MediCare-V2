@@ -14,7 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // medecinsDisponibles = eval(medecinsDisponibles.join('+'))
       console.log("medecinsDisponibles",eval(medecinsDisponibles.join('+')))
       const totalRendezVous = "N/A"; 
-      const allSpecialties = "N/A"
+      //khassni nchouf kifach n9ad had lblan dial l'affichage des specialités
+      const allSpecialties = localStorage.getItem("specialties").length
       const uniqueSpecialties = new Set(allSpecialties);
       const nombreSpecialites = uniqueSpecialties.size;
 
