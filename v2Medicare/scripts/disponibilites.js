@@ -8,14 +8,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const select = document.getElementById('doctor-filter-select');
 
     if (!container || !select) {
-        console.error("Erreur : Ma kaynch l-container 'medcinCartes' wla 'doctor-filter-select'");
+        console.error("Erreur : Y'a pas de cartes ");
         return;
     }
     if (storedDoctors) 
         {
         const doctorsData = JSON.parse(storedDoctors);
 
-        select.innerHTML = '<option value="">-- Khtar Medcin --</option>';
+        select.innerHTML = '<option value="">veuillez choisir un medcin </option>';
         doctorsData.forEach(medcin => {
             const option = document.createElement('option');
             option.value = medcin.id;
