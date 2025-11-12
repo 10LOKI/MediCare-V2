@@ -8,7 +8,7 @@
       "specialty": "Cardiologue",
       "image": "../../v1Medicare/images/doc01.jpg",
       "description": "description for medecin 1",
-      "joursdispo": []
+      "joursdispo": ["lundi"]
 
     },
     {
@@ -17,7 +17,7 @@
       "specialty": "Dermatologist",
       "image": "../../v1Medicare/images/doc02.jpg",
       "description": "description for medecin 2",
-      "joursdispo": []
+      "joursdispo": ["lundi","mardi"]
     },
     {
       "id": 3,

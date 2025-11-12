@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch('scripts/Doctors-v2.json')
     .then(response => {
       if (!response.ok) {
-        throw new Error("Erreur réseau lors de la récupération du JSON");
+        throw new Error("erreur");
       }
       return response.json();
     })
@@ -10,9 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const doctors = data.doctors;
       const totalMedecins = doctors.length;
 
-      const medecinsDisponibles = doctors.filter(doc => doc.jours > 0).length;
+      let  medecinsDisponibles = doctors.map(doc => (doc.joursdispo.length));
+      // medecinsDisponibles = eval(medecinsDisponibles.join('+'))
+      console.log("medecinsDisponibles",eval(medecinsDisponibles.join('+')))
       const totalRendezVous = "N/A"; 
-      const allSpecialties = doctors.map(doc => doc.specialty);
+      const allSpecialties = "N/A"
       const uniqueSpecialties = new Set(allSpecialties);
       const nombreSpecialites = uniqueSpecialties.size;
 
@@ -23,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       
       const elementDisponibles = document.getElementById('stat-medecins-disponibles');
       if (elementDisponibles) {
-        elementDisponibles.textContent = medecinsDisponibles;
+        elementDisponibles.textContent = eval(medecinsDisponibles.join('+'));
       }
 
       const elementRdv = document.getElementById('stat-total-rendez-vous');
