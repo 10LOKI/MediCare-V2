@@ -14,25 +14,6 @@
 </head>
 
 <body>
-        <header class="bg-blue-700">
-        <div class="bg-blue-dark">
-      <div class="container mx-auto px-4">
-        <div class="flex items-center md:justify-between py-4">
-          <div class="w-1/4 md:w-auto md:flex text-right">
-            <div>
-              <img class="inline-block h-8 w-8 rounded-full" src="https://avatars0.githubusercontent.com/u/4323180?s=460&v=4" alt="">
-            </div>
-            <div class="hidden md:block md:flex md:items-center ml-2">
-              <span class="text-white text-sm mr-1">Adam Wathan</span>
-              <div>
-                <svg class="fill-current text-white h-4 w-4 block opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M4.516 7.548c.436-.446 1.043-.481 1.576 0L10 11.295l3.908-3.747c.533-.481 1.141-.446 1.574 0 .436.445.408 1.197 0 1.615-.406.418-4.695 4.502-4.695 4.502a1.095 1.095 0 0 1-1.576 0S4.924 9.581 4.516 9.163c-.409-.418-.436-1.17 0-1.615z"/></svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </header>
     <section class="bg-gray-900 w-[100vw] h-[100vh] flex">
         <div class="bg-slate-100 grid grid-flow-col grid-rows-6 w-[300px] h-full px-4 ">
             <a class="row-span-1 w-full h-full h-fit flex justify-center items-center" href="index.html">
@@ -42,38 +23,38 @@
             <nav class="row-start-2 row-end-5 grid grid-rows-5 gap-2">
                 <label class="relative cursor-pointer">
                     <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <div
+                    <a href="../acceuil.html"
                         class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
                         <i class="ri-dashboard-horizontal-fill mx-7"></i> Dashboard
-                    </div>
+                </a>
                 </label>
                 <label class="relative cursor-pointer">
                     <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <div
+                    <a href="g_medcins.html"
                         class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
                         <i class="ri-medicine-bottle-fill mx-7"></i> Médecins
-                    </div>
+                </a>
                 </label>
                 <label class="relative cursor-pointer">
                     <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <div
+                    <a href="g_specialites.html"
                         class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
                         <i class="ri-test-tube-fill mx-7"></i> Spécialité
-                    </div>
+                </a>
                 </label>
                 <label class="relative cursor-pointer">
                     <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <div
+                    <a href="g_disponibilites.html"
                         class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
                         <i class="ri-pulse-fill mx-7"></i> Disponibilité
-                    </div>
+                </a>
                 </label>
                 <label class="relative cursor-pointer">
                     <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <div
+                    <a href="g_rendez-vous.html"
                         class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
                         <i class="ri-calendar-fill mx-7"></i> Rendez-vous
-                    </div>
+                </a>
                 </label>
             </nav>
 
@@ -84,12 +65,26 @@
             </div>
         </div>
         <div id="bodySec" class="flex justify-center items-center w-full h-full ">
-            <div class="bg-white h-[90%] w-[90%] rounded-lg shadow-sm">
-                <div id="medcinCartes"></div>
+               <div class="bg-white h-[90%] w-[90%] rounded-lg shadow-sm p-6 overflow-y-auto">
+
+                <h1 class="text-2xl font-bold text-gray-900 mb-6">Gérer les Disponibilités</h1>
+
+                <div class="mb-6">
+                    <label for="doctor-filter-select" class="block text-sm font-medium text-gray-700 mb-2">Veuillez choisir un medcin :</label>
+                    <select id="doctor-filter-select"
+                        class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <option value="">Veuillez attendre :</option>
+                    </select>
+                </div>
+
+                       <div id="medcinCartes" class="space-y-6">
+                </div>
+
+                   
             </div>
         </div>
     </section>
-    <script src="../scripts/demo.js"></script>
+    <script src="../scripts/disponibilites.js"></script>
 </body>
 
 </html>
