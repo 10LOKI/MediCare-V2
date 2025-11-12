@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function saveAppointment(appointment) {
-        let appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+        const appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
         appointments.push(appointment);
         localStorage.setItem('appointments', JSON.stringify(appointments));
     }
@@ -247,6 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="text-gray-300 text-sm space-y-1">
                         <p><span class="text-gray-400">Patient:</span> ${apt.fullName}</p>
                         <p><span class="text-gray-400">Email:</span> ${apt.email}</p>
+                        <p><span class="text-gray-400">Jour demandé:</span> ${apt.day}</p>
                         <p><span class="text-gray-400">Téléphone:</span> ${apt.phone}</p>
                         ${apt.reason ? `<p class="mt-2"><span class="text-gray-400">Motif:</span> ${apt.reason}</p>` : ''}
                         <p class="mt-2"><span class="text-gray-400">Status:</span> ${apt.status_rdv}</p>

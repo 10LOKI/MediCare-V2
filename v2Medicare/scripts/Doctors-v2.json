@@ -1,11 +1,8 @@
 
 {
-  "specialties": [
-    "Cardiology",
-    "Dermatology",
-    "Pediatrics"
-  ],
-  "doctors": [
+  "specialties": ["Cardiology","Dermatology","Pediatrics"],
+
+  "doctors":[
     {
       "id": 1,
       "name": "Dr. Sara Boudlal",
@@ -13,6 +10,7 @@
       "image": "../../v1Medicare/images/doc01.jpg",
       "description": "description for medecin 1",
       "joursdispo": []
+
     },
     {
       "id": 2,
