@@ -1,7 +1,10 @@
 {
-  "specialties": ["Cardiology","Dermatology","Pediatrics"],
-
-  "doctors":[
+  "specialties": [
+    "Cardiology",
+    "Dermatology",
+    "Pediatrics"
+  ],
+  "doctors": [
     {
       "id": 1,
       "name": "Dr. Sara Boudlal",

@@ -9,8 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-
-
+    
 
 
 
@@ -18,49 +17,33 @@
 
 <body>
     <section class="bg-gray-900 w-[100vw] h-[100vh] flex overflow-x-hidden">
-        <div class="bg-slate-100 grid grid-flow-col grid-rows-6 w-[300px] h-full px-4 ">
-            <a class="row-span-1 w-full h-full h-fit flex justify-center items-center" href="index.html">
+         <div class="bg-slate-100 grid grid-flow-col grid-rows-6 w-[300px] h-full px-4 ">
+            <a class="row-span-1 w-full h-full  flex justify-center items-center" href="index.html">
                 <div class="text-gray-900 text-xl font-bold">MED <span class="font-bold text-blue-500">Care+</span>
                 </div>
             </a>
-            <nav class="row-start-2 row-end-5 grid grid-rows-5 gap-2">
-                <label class="relative cursor-pointer">
-                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <a href="../acceuil.html"
-                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
-                        <i class="ri-dashboard-horizontal-fill mx-7"></i> Dashboard
-                </a>
-                </label>
-                <label class="relative cursor-pointer">
-                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <a href="g_medcins.html"
-                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
-                        <i class="ri-medicine-bottle-fill mx-7"></i> Médecins
-                </a>
-                </label>
-                <label class="relative cursor-pointer">
-                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <a href="g_specialites.html"
-                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
-                        <i class="ri-test-tube-fill mx-7"></i> Spécialité
-                </a>
-                </label>
-                <label class="relative cursor-pointer">
-                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <a href="g_disponibilites.html"
-                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
-                        <i class="ri-pulse-fill mx-7"></i> Disponibilité
-                </a>
-                </label>
-                <label class="relative cursor-pointer">
-                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <a href="g_rendez-vous.html"
-                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
-                        <i class="ri-calendar-fill mx-7"></i> Rendez-vous
-                </a>
-                </label>
+            <nav class="row-start-2 row-end-5 grid grid-rows-5">
+                <a href="../acceuil.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-dashboard-horizontal-fill  mx-7"></i> Dashboard
+            </a>
+                <a href="g_medcins.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-medicine-bottle-fill mx-7"></i> Medecins
+        </a>
+                <a href="g_specialites.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-test-tube-fill mx-7"></i> Specialité
+    </a>
+                <a href="g_disponibilites.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-pulse-fill mx-7"></i> Disponibilité
+</a>
+                <a href="g_rendez-vous.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-calendar-fill mx-7"></i> Rendez-vous
+</a>
             </nav>
-
             <a href="loginPage.html"
                 class="relative top-10 row-start-6 row-end-7 flex text-gray-900  items-center hover:text-blue-500 cursor-pointer w-fit h-fit transition bltext-blue-500 cursor-pointer5 duration-300">
                 <i class="ri-logout-circle-r-line text-3xl "></i>
@@ -69,14 +52,32 @@
         </div>
         <div id="bodySec" class="flex justify-center items-center w-full h-full">
             <div class="bg-white h-[90%] w-[90%] rounded-lg shadow-sm flex flex-col p-6">
-                <!-- <div id="container"
-                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full h-full overflow-y-auto scroll-smooth p-8">
-                </div> -->
-                <div class="h-full bg-gray-900 w-full  rounded-lg flex justify-center items-center">
+                <div class="flex h-1/3 w-full">
+                    <div class="w-[30%] h-[80%]">
+                        <div
+                            class="inline-grid shadow-md bg-[#111] text-white rounded-xl border border-gray-500  p-4 w-full h-full">
+                            <div id="cmpt" class="inline-grid w-full grid-cols-1 gap-x-4 px-6 py-4">
+                                <div class="text-gray-400 text-sm">Total de spécialités </div>
+                                <div id="ttl"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full h-[80%] pl-10">
+                        <div
+                            class="inline-grid shadow-md  bg-[#fff]  text-white rounded-xl border border-gray-500  p-4 w-full h-full">
+                            <div id="cmpt" class="inline-grid w-full grid-cols-1 gap-x-4 px-6 py-4">
+                                <div class="text-gray-400 text-sm">Total de spécialités </div>
+                                <div> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" bg-gray-900 w-full h-2/3 rounded-lg flex justify-center items-center">
                     <div class=" h-[80%] w-[90%] rounded-lg flex-col  p-5 ">
                         <div class="flex justify-between h-fit">
                             <div class="relative w-full">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="ri-bookmark-line"></i></span>
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i
+                                        class="ri-bookmark-line"></i></span>
                                 <input id="input-txt" type="text" placeholder="Veuillez saisir un specialté ..."
                                     class="text-black border-2 border-white focus:outline-none h-10 bg-white rounded-[10px] px-[30px] py-[10px] w-[80%] active:shadow-[inset_2px_2px_15px_#8707ff]" />
                             </div>
@@ -85,7 +86,8 @@
                             </button>
                         </div>
                         <div id="sp-txt"
-                            class="flex  bg-white w-full h-[60%] rounded-2xl mt-10 p-5 overflow-x-scroll "></div>
+                            class="flex flex-wrap bg-white w-full h-[60%] rounded-2xl mt-10 items-center overflow-y-scroll p-[30px] ">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,36 +99,21 @@
         const btnTxt = document.getElementById('btn-txt')
         const containerTxt = document.getElementById('sp-txt')
         const container = document.getElementById('container')
+        const ttl = document.getElementById("ttl")
         let specialte = JSON.parse(localStorage.getItem('specialties')) || []
-        renderSpec()
+        let doctors = []
         fetch('../scripts/Doctors-v2.json')
             .then((response) => response.json())
-            .then(data => {
-                let doctors = data.doctors
-                doctors.forEach(doc => {
-                    const cardDiv = document.createElement('div')
-                    cardDiv.className = ('bg-gray-900 shadow-lg w-[200px] h-[250px] grid content-center rounded-3xl hover:scale-105 transition-transform duration-300 px-2')
-                    const cardDivInside = document.createElement('div')
-                    cardDivInside.className = ('w-[100%] flex justify-center')
-                    const cardDivInsideTwo = document.createElement('div')
-                    cardDivInsideTwo.className = ('w-[100%] p-4 grid justify-center')
-                    const cardImg = document.createElement('img')
-                    cardImg.className = ('bg-cover bg-center w-[80%] h-[100%] rounded-lg bottom-5')
-                    cardImg.src = doc.image
-                    cardImg.alt = doc.name
-                    const cardH2 = document.createElement('h2')
-                    cardH2.className = ('font-bold text-xs text-blue-500')
-                    cardH2.textContent = doc.name
-                    const cardP = document.createElement('p')
-                    cardP.textContent = doc.specialty
-                    cardP.className = ('text-blue-500 text-xs')
-                    cardDiv.appendChild(cardDivInside)
-                    cardDiv.appendChild(cardDivInsideTwo)
-                    cardDivInside.appendChild(cardImg)
-                    cardDivInsideTwo.appendChild(cardH2)
-                    cardDivInsideTwo.appendChild(cardP)
-                    container.appendChild(cardDiv)
-                });
+            .then((data) => {
+                doctors = data.doctors
+                localStorage.setItem('doctors', JSON.stringify(doctors));
+                if (specialte.length === 0) {
+                    specialte = data.specialties;
+                    localStorage.setItem('specialties', JSON.stringify(specialte));
+                }
+
+                renderSpec()
+                compteur()
             })
         function ajouteSpec() {
             if (input.value.trim() === '') {
@@ -139,33 +126,51 @@
             localStorage.setItem('specialties', JSON.stringify(specialte))
             input.value = ''
             renderSpec()
+            compteur()
+
         }
         function renderSpec() {
             containerTxt.innerHTML = ''
-            specialte.forEach((spec, index) => {
+            specialte.forEach((specialte, index) => {
+
+                const isUsed = doctors.some(doc => doc.specialty === specialte);
+                console.log("isUsed",isUsed)
                 const specDiv = document.createElement('div')
-                specDiv.className = 'w-30 h-10 flex justify-between items-center border- bg-white rounded-lg p-3 mb-2 mx-3 hover:bg-blue-50 transition-colors duration-200'
+                specDiv.className = 'w-fit h-10 flex justify-between items-center bg-blue-500 rounded-lg p-3 mb-2 mx-3 hover:bg-blue-900 transition-colors duration-200'
+
+                const iconTag = document.createElement('i')
+                iconTag.className = 'ri-bookmark-line  mr-[10px]'
 
                 const specText = document.createElement('span')
-                specText.className = 'text-gray-900 font-medium'
-                specText.textContent = spec
+                specText.className = 'text-white font-medium'
+                specText.textContent = specialte
 
-                const deleteBtn = document.createElement('button')
-                deleteBtn.className = 'text-red-500 hover:text-red-700 font-bold text-xl'
-                deleteBtn.innerHTML = '&times;'
-                deleteBtn.onclick = () => popupSwt(index)
+                const deleteBtn = document.createElement('i')
+                if (isUsed) {
+                    deleteBtn.classList.add('ri-close-line','text-gray-400', 'cursor-not-allowed','ml-5');
+                    deleteBtn.disabled = true;
+                } else {
+                    deleteBtn.classList.add('ri-close-line','text-gray-900', 'hover:text-red-700','ml-5','cursor-pointer');
+                    deleteBtn.onclick = () => popupSwt(index);
+                }
 
+                specDiv.appendChild(iconTag)
                 specDiv.appendChild(specText)
                 specDiv.appendChild(deleteBtn)
                 containerTxt.appendChild(specDiv)
             })
         }
-
         input.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 ajouteSpec()
             }
         })
+        function compteur() {
+            let cmpt = specialte.length
+            console.log("compt", cmpt)
+            ttl.className = "text-4xl font-extrabold leading-tight "
+            ttl.textContent = cmpt
+        }
         function popupSwt(index) {
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
@@ -176,32 +181,34 @@
             });
 
             swalWithBootstrapButtons.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
+                title: "Es-tu sûr ?",
+                text: "Cette action est irréversible !",
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonText: "Yes, delete it!",
-                cancelButtonText: "No, cancel!",
+                confirmButtonText: "Oui, supprime-le !",
+                cancelButtonText: "Non, annuler !",
                 reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
                     specialte.splice(index, 1);
                     localStorage.setItem('specialties', JSON.stringify(specialte));
                     renderSpec();
+                    compteur()
 
                     swalWithBootstrapButtons.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
+                        title: "Supprimé !",
+                        text: "La spécialité a bien été supprimée.",
                         icon: "success"
                     });
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     swalWithBootstrapButtons.fire({
-                        title: "Cancelled",
-                        text: "Your imaginary file is safe :)",
+                        title: "Annulé",
+                        text: "La spécialité est toujours en sécurité :)",
                         icon: "error"
                     });
                 }
             });
+
         }
 
     </script>
