@@ -12,8 +12,29 @@ fetch("../scripts/Doctors-v2.json")
         else {
             console.log("deja localStorage 3amer")
         }
+        fillSpecSelect();
         displayData();
     })
+////////////////////////////=> nlinkiw m3a specialities <=\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+function fillSpecSelect() {
+    const specSelect = document.getElementById("specInpute");
+    let specialities = JSON.parse(localStorage.getItem("specialties"));
+    console.log("hadi hia", specialities);
+
+
+    if (specialities.length <= 0) {
+        console.warn(" Aucun spécialité trouvé dans localStorage !");
+    }
+    else {
+        for (let i = 0; i < specialities.length; i++) {
+            let specOption = document.createElement("option");
+            specOption.value = specialities[i];
+            specOption.textContent = specialities[i];
+            specSelect.appendChild(specOption);
+        }
+    }
+}
+
 ///////////////////////////////////=> daba khasna n affichiw data <=\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 function displayData() {
     let medicinsTbody = document.getElementById("medecinsTbody");
@@ -53,7 +74,7 @@ function displayData() {
         tdButton.appendChild(editButton);
         //=> l'appel de function modifier
         editButton.addEventListener("click", function () {
-             modifierButtonFunction(doctors[i]);  
+            modifierButtonFunction(doctors[i]);
         })
         const supButton = document.createElement("button");
         supButton.textContent = "Supprimer";
@@ -61,7 +82,7 @@ function displayData() {
             "text-red-700 hover:text-white hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2";
         tdButton.appendChild(supButton);
         //=> l'appel de function Supprimer
-        supButton.addEventListener("click", function (){
+        supButton.addEventListener("click", function () {
             supprimerButtonFunction(doctors[i]);
         })
         tr.appendChild(tdButton);
@@ -88,7 +109,7 @@ ajouterDoc.addEventListener("click", function () {
     specInput.value = "";
     photoInput.value = "";
     descInput.value = "";
-    ajouterModel.classList.remove("hidden");  
+    ajouterModel.classList.remove("hidden");
 })
 //////// ====> annuler Button 
 annulerButtonForm.addEventListener("click", function () {
@@ -101,15 +122,15 @@ ajouterButtonForm.addEventListener("click", function () {
     let specInputValue = specInput.value.trim();
     let photoInputValue = photoInput.value.trim();
     let descInputValue = descInput.value.trim();
-    
+
     //=>njibo data mn localeStorage
     let doctors = JSON.parse(localStorage.getItem("doctors")) || [];
     //=> check wach ra7na fel modification
-    if(hiddenID.value){
+    if (hiddenID.value) {
         const docId = parseInt(hiddenID.value);
         const doctor = doctors.find((dr) => dr.id === docId);
-        
-        if(doctor){
+
+        if (doctor) {
             doctor.name = nameInputValue;
             doctor.specialty = specInputValue;
             doctor.image = photoInputValue;
@@ -164,38 +185,38 @@ ajouterButtonForm.addEventListener("click", function () {
     console.log(doctors)
 })
 /////////////////////// daba MODIFIER function 
-function modifierButtonFunction(doc){
-        ajouterModel.classList.remove("hidden");
-        document.getElementById("nameInpute").value = doc.name;
-        document.getElementById("specInpute").value = doc.specialty;
-        document.getElementById("inputPhoto").value = doc.image;
-        document.getElementById("discriptionInput").value = doc.description;
+function modifierButtonFunction(doc) {
+    ajouterModel.classList.remove("hidden");
+    document.getElementById("nameInpute").value = doc.name;
+    document.getElementById("specInpute").value = doc.specialty;
+    document.getElementById("inputPhoto").value = doc.image;
+    document.getElementById("discriptionInput").value = doc.description;
 
-        document.getElementById("doctorId").value = doc.id;
-        
-        document.getElementById("ajouterFormButton").textContent = "Modifier";
-    }
+    document.getElementById("doctorId").value = doc.id;
+
+    document.getElementById("ajouterFormButton").textContent = "Modifier";
+}
 ///////////////////////////// daba khdam 3la SUPPRIMER
-    function supprimerButtonFunction(doc){
-        let doctors = JSON.parse(localStorage.getItem("doctors")) || [];
-        console.log("ttttt", doctors);
-        let index = doctors.findIndex(dr => dr.id === doc.id);
-        
-        if(index !== -1){
-            doctors.splice(index, 1);
-            localStorage.setItem("doctors", JSON.stringify(doctors)) || [];
-            displayData();
-        }
-    }
+function supprimerButtonFunction(doc) {
+    let doctors = JSON.parse(localStorage.getItem("doctors")) || [];
+    console.log("ttttt", doctors);
+    let index = doctors.findIndex(dr => dr.id === doc.id);
 
-    ///// bach nsado l forme b click berra
-    ajouterModel.addEventListener("click", function (e){
-        if(e.target === ajouterModel){
-            ajouterModel.classList.add("hidden");
-        }
-    })
-    
-  
+    if (index !== -1) {
+        doctors.splice(index, 1);
+        localStorage.setItem("doctors", JSON.stringify(doctors)) || [];
+        displayData();
+    }
+}
+
+///// bach nsado l forme b click berra
+ajouterModel.addEventListener("click", function (e) {
+    if (e.target === ajouterModel) {
+        ajouterModel.classList.add("hidden");
+    }
+})
+
+
 
 
 
