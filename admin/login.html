@@ -5,15 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medcare+ login</title>
-    <link rel="shortcut icon" href="../../v1Medicare/images/Medicare+.webp" type="image/x-icon">
+    <link rel="shortcut icon" href="../images/Medicare+.webp" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap" rel="stylesheet">
 </head>
 
-<body class="m-0 p-0 bg-blue-950 flex text-white text-[15px]" style="font-family: 'Poppins', sans-serif;">
+<body class="bd m-0 p-0 bg-blue-950 flex text-white text-[15px]" style="font-family: 'Poppins', sans-serif;">
 
 
-    <div class="w-full my-15 md:flex items-center justify-between">
+   
+
+    <script>
+        if (localStorage.Identifiant == null) {
+            localStorage.setItem("Identifiant", "secretaire")
+            localStorage.setItem("pass", "admin123")
+        }
+        let body = document.querySelector('.bd')
+        body.innerHTML = ` <div class="w-full my-15 md:flex items-center justify-between">
 
         <div id="formLog" class="w-80 py-10 mx-auto items-center md:w-90 ">
             <div class="card-body space-y-4">
@@ -27,7 +35,7 @@
                 </label>
                 <input type="text" id="emailUser" name="email"
                     class="w-full px-4 py-3 bg-gray-700/50 border-2 border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300"
-                    placeholder="MP544ddD5dR%tè!9$">
+                    placeholder="admin ...">
                 <p class="error-messageEmail text-red-400 text-sm mt-1"></p>
             </div>
 
@@ -36,7 +44,7 @@
                     Modepass
                 </label>
                 <input type="password" id="passUser" name="Modepass"
-                    class="w-full px-4 py-3 bg-gray-700/50 border-2 border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300" placeholder="Enter-ur-psswrd">
+                    class="w-full px-4 py-3 bg-gray-700/50 border-2 border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300" placeholder="Enter modepass ...">
                 <p class="error-messagePass text-red-400 text-sm mt-1"></p>
             </div>
             
@@ -46,18 +54,11 @@
             </button>
         </div>
         <div class="grid items-center justify-center rounded-xl p-1 mx-auto">
-            <img src="../../v1Medicare/images/login.svg" alt="login image care Healthy" class="w-120 md:w-115 lg:150">
+            <img src="../images/login.svg" alt="login image care Healthy" class="w-120 md:w-115 lg:150">
         </div>
 
 
-    </div>
-
-    <script>
-        if (localStorage.Identifiant == null) {
-            localStorage.setItem("Identifiant", "secretaire")
-            localStorage.setItem("pass", "admin123")
-        }
-        
+    </div>`
         //-------------------  coming soon  ----------------------
         //document.cookie = "email=" + datacockies.getItem("email")
         //document.cookie = "pass=" + localStorage.getItem("pass")

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -9,109 +9,101 @@
         content="Dashbord, Medecine, nurse, gestion, disponibilité, spécialité, Rendez-vous,admin, medicare+">
     <title>Rendez-vous</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="shortcut icon" href="../../v1Medicare/images/Medicare+.webp" type="image/x-icon">
+    <link rel="shortcut icon" href="../../images/Medicare+.webp" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 
 <body>
-   <section class="bg-gray-900 w-[100vw] h-[100vh] flex">
-        <div class="bg-slate-100 grid grid-flow-col grid-rows-6 w-[300px] h-full px-4 ">
-            <a class="row-span-1 w-full h-full h-fit flex justify-center items-center" href="index.html">
+    <section class="bg-gray-900 w-[100vw] h-[100vh] flex">
+        <div class="bg-gray-300 grid grid-flow-col grid-rows-6 w-[300px] h-full px-4 ">
+            <a class="row-span-1 w-full h-full  flex justify-center items-center" href="index.html">
                 <div class="text-gray-900 text-xl font-bold">MED <span class="font-bold text-blue-500">Care+</span>
                 </div>
             </a>
-            <nav class="row-start-2 row-end-5 grid grid-rows-5 gap-2">
-                <label class="relative cursor-pointer">
-                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <a href="../acceuil.html"
-                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
-                        <i class="ri-dashboard-horizontal-fill mx-7"></i> Dashboard
+            <nav class="row-start-2 row-end-5 grid grid-rows-5">
+                <a href="acceuil.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-dashboard-horizontal-fill  mx-7"></i> Dashboard
                 </a>
-                </label>
-                <label class="relative cursor-pointer">
-                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <a href="/v2Medicare/pages/g_medcins.html"
-                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
-                        <i class="ri-medicine-bottle-fill mx-7"></i> Médecins
+                <a href="g_medcins.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-medicine-bottle-fill mx-7"></i> Medecins
                 </a>
-                </label>
-                <label class="relative cursor-pointer">
-                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <a href="g_specialites.html"
-                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
-                        <i class="ri-test-tube-fill mx-7"></i> Spécialité
+                <a href="g_specialites.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-test-tube-fill mx-7"></i> Specialité
                 </a>
-                </label>
-                <label class="relative cursor-pointer">
-                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <a href="g_disponibilites.html"
-                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
-                        <i class="ri-pulse-fill mx-7"></i> Disponibilité
+                <a href="g_disponibilites.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-pulse-fill hover:ri-pulse-fill mx-7"></i> Disponibilité
                 </a>
-                </label>
-                <label class="relative cursor-pointer">
-                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <a href="g_rendez-vous.html"
-                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
-                        <i class="ri-calendar-fill mx-7"></i> Rendez-vous
+                <a href="g_rendez-vous.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-calendar-fill mx-7"></i> Rendez-vous
                 </a>
-                </label>
             </nav>
-
-            <a href="loginPage.html"
+            <a href="../login.html"
                 class="relative top-10 row-start-6 row-end-7 flex text-gray-900  items-center hover:text-blue-500 cursor-pointer w-fit h-fit transition bltext-blue-500 cursor-pointer5 duration-300">
                 <i class="ri-logout-circle-r-line text-3xl "></i>
                 Log Out
-        </a>
+            </a>
         </div>
-        <div id="bodySec" class="flex justify-center items-center w-full h-full ">
-            <div class="bg-white h-[90%] w-[90%] rounded-lg shadow-sm">
+        <div id="bodySec" class="flex justify-center items-start w-full bg-gray-900 h-full p-6 overflow-auto">
+            <div class="bg-gray-400 h-[90%] w-[95%] rounded-lg shadow-sm">
                 <!------------------- Section maipulation data RDV ----------------------------------------->
-                <div id="rdv">
+                <div class="@container p-4 ">
+                    <div class="flex flex-col lg:flex-row gap-4 mb-6">
+                        <div class="flex-1 bg-indigo-100 border border-indigo-200 rounded-xl p-6 animate-fade-in">
+                            <h2 class="text-4xl md:text-5xl text-blue-900">
+                                Bonjour <br><strong>Mme secretaire</strong>
+                            </h2>
+                            <span id="montre"
+                                class="inline-block mt-8 px-8 py-2 rounded-full text-xl font-bold text-white bg-indigo-800">
 
-                    <div class="relative overflow-x-auto">
-                        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-                            <thead class="text-lg text-gray-700 bg-blue-300 uppercase shadow-md overflow-hidden">
-                                <tr class="shadow-md">
-                                    <th class="border-r-2">
-                                        <p class="flex items-center justify-between w-full h-full px-1 md:px-4 py-4">
+                            </span>
+                        </div>
 
-                                        Doctor
-                                        <button class="disponible border w-10 h-10 rounded-full bg-center bg-no-repeat bg-[url('../../v1Medicare/images/list.png')] duration-500 transition-all"></button>
-                                        </p>
-                                    </th>
-                                    <th class="px-4 py-4">
-                                        Patient
-                                    </th>
-                                    <th class="px-4 py-4">
-                                        Date
-                                    </th>
-                                    <th class="px-4 py-4 border-r-2">
-                                        Heure
-                                    </th>
-                                    <th class="px-4 py-4">
-                                        <p class="flex items-center justify-between w-full h-full px-1 md:px-1 py-2">
-                                            <img src="../../v1Medicare/images/list.png" class="green w-8 h-8 bg-green-400 rounded-full duration-500 transition-all cursor-pointer">
-                                            
-                                            Status
-                                            
-                                            <img src="../../v1Medicare/images/list.png" class="red w-8 h-8 rounded-full bg-red-500 duration-500 transition-all cursor-pointer">
-                                        
-                                        </p>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody id="tbody">
+                        <div class="relative overflow-x-auto">
+                            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                                <thead
+                                    class="text-lg text-gray-700 bg-blue-300 w-full h-20 uppercase shadow-md overflow-hidden">
+                                    <tr class="shadow-md">
+                                        <th class="border-r-2">
+                                            <p class="flex items-center justify-between h-full px-1 md:px-4 py-4">
 
-                            </tbody>
-                        </table>
+                                                Doctor
+                                                <button
+                                                    class="disponible border w-10 h-10 rounded-full bg-center bg-no-repeat bg-[url('../../images/list.png')] duration-500 transition-all relative"></button>
+                                            </p>
+                                        </th>
+                                        <th scope="col" class="px-1 md:px-4 py-4">
+                                            Patient
+                                        </th>
+                                        <th scope="col" class="px-1 md:px-4 py-4">
+                                            Jour
+                                        </th>
+                                        <th class="px-4 py-4">
+                                            <p
+                                                class="flex items-center justify-between w-full h-full px-1 md:px-1 py-2">
+                                                <img src="../../images/list.png"
+                                                    class="acceptRdvBtn w-8 h-8 bg-green-400 rounded-full duration-500 transition-all cursor-pointer">
+                                                Status
+                                                <img src="../../images/list.png"
+                                                    class="refuseRdvBtn w-8 h-8 rounded-full bg-red-500 duration-500 transition-all cursor-pointer">
+                                            </p>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody">
+
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
-
                 </div>
             </div>
-
-        </div>
     </section>
 
     <script src="../scripts/g_rdv.js">
