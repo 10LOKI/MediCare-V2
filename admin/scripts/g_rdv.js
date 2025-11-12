@@ -79,5 +79,3 @@ green.addEventListener('click', () => {
 })
 
 listRendezVous()
-
-

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="shortcut icon" href="../../v1Medicare/images/Medicare+.webp" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
 
@@ -22,99 +23,72 @@
             <nav class="row-start-2 row-end-5 grid grid-rows-5 gap-2">
                 <label class="relative cursor-pointer">
                     <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <div
+                    <a href="../acceuil.html"
                         class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
                         <i class="ri-dashboard-horizontal-fill mx-7"></i> Dashboard
-                    </div>
+                </a>
                 </label>
                 <label class="relative cursor-pointer">
                     <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <div
+                    <a href="g_medcins.html"
                         class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
                         <i class="ri-medicine-bottle-fill mx-7"></i> Médecins
-                    </div>
+                </a>
                 </label>
                 <label class="relative cursor-pointer">
                     <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <div
+                    <a href="g_specialites.html"
                         class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
                         <i class="ri-test-tube-fill mx-7"></i> Spécialité
-                    </div>
+                </a>
                 </label>
                 <label class="relative cursor-pointer">
                     <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <div
+                    <a href="g_disponibilites.html"
                         class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
                         <i class="ri-pulse-fill mx-7"></i> Disponibilité
-                    </div>
+                </a>
                 </label>
                 <label class="relative cursor-pointer">
                     <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
-                    <div
+                    <a href="g_rendez-vous.html"
                         class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
                         <i class="ri-calendar-fill mx-7"></i> Rendez-vous
-                    </div>
+                </a>
                 </label>
             </nav>
 
             <div
-                class="relative top-10 row-start-6 row-end-7 flex text-gray-900  items-center hover:text-blue-500 cursor-pointer w-fit h-fit transition bltext-blue-500 cursor-pointer5 duration-300">
+                class="logOut relative top-10 row-start-6 row-end-7 flex text-gray-900  items-center hover:text-blue-500 cursor-pointer w-fit h-fit transition bltext-blue-500 cursor-pointer5 duration-300">
                 <i class="ri-logout-circle-r-line text-3xl "></i>
                 Log Out
             </div>
         </div>
         <div id="bodySec" class="flex justify-center items-center w-full h-full ">
-            <div
-                class="bg-white h-[90%] w-[90%] rounded-lg shadow-sm grid grid-rows-5 justify-items-center content-center">
-                <div id="container"
-                    class="  grid grid-cols-1 row-start-1 row-end-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 scroll-smooth gap-20 max-w-[90%] h-[100%] relative justify-items-center items-center p-10 overflow-hidden">
-                </div>
-                <!-- <div
-                    class="h-full w-full row-start-4 row-end-6 bg-gray-500 rounded-b-lg flex justify-center items-center">
-                    <div class="bg-white h-[80%] w-[90%] rounded-lg "></div>
+               <div class="bg-white h-[90%] w-[90%] rounded-lg shadow-sm p-6 overflow-y-auto">
+                    <h1 class="text-2xl font-bold text-gray-900 mb-6">Gérer les Disponibilités</h1>
+                    <div class="flex flex-row items-baseline pb-6">
+                        <h2 class="font-bold">la date d'aujourdhui : </h2>
+                        <span id="montre" class="ml-10 inline-block m mt-8 px-8 py-2 rounded-full text-xl font-bold text-white bg-indigo-800"></span>
+                    </div>
+                
 
-                </div> -->
+                <div class="mb-6">
+                    <label for="doctor-filter-select" class="block text-sm font-medium text-gray-700 mb-2">Veuillez choisir un medcin :</label>
+                    <select id="doctor-filter-select"
+                        class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <option value="">Veuillez attendre :</option>
+                    </select>
+                </div>
+
+                       <div id="medcinCartes" class="space-y-6">
+                </div>
+
+                   
             </div>
         </div>
     </section>
-    <script>
-        const container = document.getElementById('container')
-        fetch('../public/asset/Doctors.json')
-            .then((response) => response.json())
-            .then(data => {
-                let doctors = data.doctors
-                doctors.forEach(doc => {
-                    const cardDiv = document.createElement('div')
-                    cardDiv.className = ('bg-gray-900 shadow-lg w-[200px] h-[250px] grid  content-center rounded-3xl hover:scale-105 transition-transform duration-300 px-2')
-                    const cardDivInside = document.createElement('div')
-                    cardDivInside.className = ('w-[100%] flex justify-center')
-                    const cardDivInsideTwo = document.createElement('div')
-                    cardDivInsideTwo.className = ('w-[100%] p-4 relative grid justify-center ')
-                    const cardImg = document.createElement('img')
-                    cardImg.className = ('bg-cover bg-center w-[80%] h-[100%] rounded-lg relative bottom-5 ')
-                    cardImg.src = doc.image
-                    cardImg.alt = doc.name
-                    const cardH2 = document.createElement('h2')
-                    cardH2.className = ('font-bold text-sm text-blue-500')
-                    cardH2.textContent = doc.name
-                    const cardP = document.createElement('select')
-                    cardP.className = ('  px-3')
-                    const cardOp = document.createElement('option')
-                    cardP.className = ('text-black')
-                    cardOp.textContent = doc.specialty
-                    cardOp.className = ('text-blue-500 px-3')
-                    cardDiv.appendChild(cardDivInside)
-                    cardDiv.appendChild(cardDivInsideTwo)
-                    cardDivInside.appendChild(cardImg)
-                    cardDivInsideTwo.appendChild(cardH2)
-                    cardDivInsideTwo.appendChild(cardP)
-                    cardP.appendChild(cardOp)
-                    container.appendChild(cardDiv)
-
-
-                });
-            })
-    </script>
+    <script src="../scripts/disponibilites.js"></script>
 </body>
 
 </html>

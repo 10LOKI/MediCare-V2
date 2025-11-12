@@ -1,7 +1,7 @@
 
 {
   "specialties": [
-    "Cardiology",
+    "Cardiologue",
     "Dermatology",
     "Pediatrics"
   ],
@@ -13,7 +13,6 @@
       "image": "../../v1Medicare/images/doc01.jpg",
       "description": "description for medecin 1",
       "joursdispo": ["lundi"]
-
     },
     {
       "id": 2,

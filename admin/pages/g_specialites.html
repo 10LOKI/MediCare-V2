@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    
+
 
 
 
@@ -101,15 +101,17 @@
         const container = document.getElementById('container')
         const ttl = document.getElementById("ttl")
         let specialte = JSON.parse(localStorage.getItem('specialties')) || []
-        let doctors = []
+        let doctors = JSON.parse(localStorage.getItem('doctors')) || []
         fetch('../scripts/Doctors-v2.json')
             .then((response) => response.json())
             .then((data) => {
-                doctors = data.doctors
-                localStorage.setItem('doctors', JSON.stringify(doctors));
                 if (specialte.length === 0) {
                     specialte = data.specialties;
                     localStorage.setItem('specialties', JSON.stringify(specialte));
+                }
+                if (doctors.length === 0) {
+                    doctors = data.doctors;
+                    localStorage.setItem('doctors', JSON.stringify(doctors));
                 }
 
                 renderSpec()
