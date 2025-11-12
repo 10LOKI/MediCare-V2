@@ -20,10 +20,9 @@ fetch("../scripts/Doctors-v2.json")
         } else {
             console.log("localStorage specialties déjà rempli");
         }
-
+        
         fillSpecSelect();
         displayData();
-
     })
 ////////////////////////////=> nlinkiw m3a specialities <=\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 function fillSpecSelect() {
@@ -225,9 +224,5 @@ ajouterModel.addEventListener("click", function (e) {
     if (e.target === ajouterModel) {
         ajouterModel.classList.add("hidden");
     }
-<<<<<<< HEAD:v2Medicare/scripts/g-medcins.js
 })
 
-=======
-})
->>>>>>> f35710eaa0b3ae49c24d529966e33b4f3e9dfcb9:admin/scripts/g-medcins.js
