@@ -1,67 +1,63 @@
 document.addEventListener("DOMContentLoaded", () => {
-  fetch('scripts/Doctors-v2.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("erreur");
-      }
-      return response.json();
-    })
-    .then(data => {
-      const doctors = data.doctors;
-      const totalMedecins = doctors.length;
+    const storedDoctors = localStorage.getItem("doctors");
+    const doctors = storedDoctors ? JSON.parse(storedDoctors) : [];
+    
+    const storedSpecialties = localStorage.getItem("specialties");
+    const specialties = storedSpecialties ? JSON.parse(storedSpecialties) : [];
 
-      let  medecinsDisponibles = doctors.map(doc => (doc.joursdispo.length));
-      // medecinsDisponibles = eval(medecinsDisponibles.join('+'))
-      console.log("medecinsDisponibles",eval(medecinsDisponibles.join('+')))
-      const totalRendezVous = "N/A"; 
-      //khassni nchouf kifach n9ad had lblan dial l'affichage des specialités
-      const allSpecialties = localStorage.getItem("specialties").length
-      const uniqueSpecialties = new Set(allSpecialties);
-      const nombreSpecialites = uniqueSpecialties.size;
-
-      const elementTotal = document.getElementById('stat-total-medecins');
-      if (elementTotal) {
+    const totalMedecins = doctors.length;
+    const elementTotal = document.getElementById('stat-total-medecins');
+    if (elementTotal) {
         elementTotal.textContent = totalMedecins;
-      }
-      
-      const elementDisponibles = document.getElementById('stat-medecins-disponibles');
-      if (elementDisponibles) {
-        elementDisponibles.textContent = eval(medecinsDisponibles.join('+'));
-      }
+    }
 
-      const elementRdv = document.getElementById('stat-total-rendez-vous');
-      if (elementRdv) {
+    let medecinsDisponiblesCount = 0;
+    
+    for (let i = 0; i < doctors.length; i++) {
+        const doctor = doctors[i];
+        const availabilityKey = `availability_${doctor.id}`;
+        
+        const doctorAvailabilityData = localStorage.getItem(availabilityKey);
+        
+        if (doctorAvailabilityData) {
+            const availabilityArray = JSON.parse(doctorAvailabilityData);
+            
+            if (availabilityArray.length > 0) {
+                medecinsDisponiblesCount++;
+            }
+        }
+    }
+    
+    const elementDisponibles = document.getElementById('stat-medecins-disponibles');
+    if (elementDisponibles) {
+        elementDisponibles.textContent = medecinsDisponiblesCount;
+    }
+
+    const totalRendezVous = "N/A";
+    const elementRdv = document.getElementById('stat-total-rendez-vous');
+    if (elementRdv) {
         elementRdv.textContent = totalRendezVous;
-      }
-      
-      const elementSpecialites = document.getElementById('stat-nombre-specialites');
-      if (elementSpecialites) {
+    }
+
+    const nombreSpecialites = specialties.length; 
+    
+    const elementSpecialites = document.getElementById('stat-nombre-specialites');
+    if (elementSpecialites) {
         elementSpecialites.textContent = nombreSpecialites;
-      }
-      
-    })
-    .catch(error => {
-      console.error("Impossible de charger les données des médecins:", error);
-      
-      document.getElementById('stat-total-medecins').textContent = "Erreur";
-      document.getElementById('stat-medecins-disponibles').textContent = "Erreur";
-      document.getElementById('stat-total-rendez-vous').textContent = "Erreur";
-      document.getElementById('stat-nombre-specialites').textContent = "Erreur";
-    });
+    }
 });
 
 function updateTime() {
-    const clockElement = document.getElementById("montre");
+    const clockElement = document.getElementById("montre");
+    const now = new Date();
+ 
+    const options = { weekday: 'long' };
+    
+    const dayString = now.toLocaleDateString('fr-FR', options);
     
-    const now = new Date();
-    
-    const dateString = now.toLocaleDateString();
-    
-    const timeString = now.toLocaleTimeString();
-    clockElement.textContent = dateString + " - " + timeString;
+    clockElement.textContent = dayString;
 }
 
 window.onload = function() {
-    updateTime(); 
-    setInterval(updateTime, 1000);
+    updateTime();
 };
