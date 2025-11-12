@@ -9,7 +9,7 @@
       "id": 1,
       "name": "Dr. Sara Boudlal",
       "specialty": "Cardiologue",
-      "image": "../../v1Medicare/images/doc01.jpg",
+      "image": "../..//images/doc01.jpg",
       "description": "description for medecin 1",
       "joursdispo": ["lundi"]
     },

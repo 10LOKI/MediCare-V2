@@ -48,7 +48,7 @@ function validateField(field) {
         errorOption.disabled = true;
         doctorSelect.appendChild(errorOption);
     }
-
+    }
     doctorSelect.addEventListener('change', () => {
         const selectedDoctorId = doctorSelect.value;
         
@@ -145,7 +145,6 @@ function validateField(field) {
 
         return isValid;
     }
-    // this is form getting values
     const formData = {
         id: Date.now(),
         fullName: document.getElementById('fullName').value.trim(),
