@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medcare+ login</title>
-    <link rel="shortcut icon" href="../../v1Medicare/images/Medicare+.webp" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap" rel="stylesheet">
+    
 </head>
 
 <body class="m-0 p-0 bg-blue-950 flex text-white text-[15px]" style="font-family: 'Poppins', sans-serif;">
@@ -23,11 +23,11 @@
             </div>
             <div class="mb-5">
                 <label for="email" class="block text-sm font-semibold text-gray-200 mb-2">
-                    Identifiant: 
+                    Adresse email
                 </label>
-                <input type="text" id="emailUser" name="email"
+                <input type="email" id="emailUser" name="email"
                     class="w-full px-4 py-3 bg-gray-700/50 border-2 border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300"
-                    placeholder="MP544ddD5dR%tè!9$">
+                    placeholder="admin@email.com">
                 <p class="error-messageEmail text-red-400 text-sm mt-1"></p>
             </div>
 
@@ -36,29 +36,30 @@
                     Modepass
                 </label>
                 <input type="password" id="passUser" name="Modepass"
-                    class="w-full px-4 py-3 bg-gray-700/50 border-2 border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300" placeholder="Enter-ur-psswrd">
+                    class="w-full px-4 py-3 bg-gray-700/50 border-2 border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300">
                 <p class="error-messagePass text-red-400 text-sm mt-1"></p>
             </div>
-            
+
             <button onclick="Login()" id="logBtn"
                 class="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300">
                 login
             </button>
         </div>
         <div class="grid items-center justify-center rounded-xl p-1 mx-auto">
-            <img src="../../v1Medicare/images/login.svg" alt="login image care Healthy" class="w-120 md:w-115 lg:150">
+            <img src="../public/images/login.svg" alt="login image care Healthy" class="w-120 md:w-115 lg:150">
         </div>
 
 
     </div>
 
     <script>
-        if (localStorage.Identifiant == null) {
-            localStorage.setItem("Identifiant", "secretaire")
-            localStorage.setItem("pass", "admin123")
+        if (localStorage.email == null) {
+            localStorage.setItem("email", "hey@email.com")
+            localStorage.setItem("pass", "12345")
         }
-        
-        //-------------------  coming soon  ----------------------
+
+
+
         //document.cookie = "email=" + datacockies.getItem("email")
         //document.cookie = "pass=" + localStorage.getItem("pass")
         //const day = new Date()
@@ -67,46 +68,45 @@
         //let email_coockie = datacockies.getItem("email")
         //let pass_cockie = datacockies.getItem("pass")
 
-        const login = document.querySelector("#logBtn")
-        login.addEventListener('click', () => {
+
+
+        //bedra coder
+
+
+        //const login = document.querySelector("#logBtn")
+        function Login() {
 
             let pass = document.querySelector("#passUser").value.trim()
             let email = document.querySelector("#emailUser").value.trim()
 
-            if (email != localStorage.Identifiant || pass != localStorage.pass) {
+            if (email != localStorage.email || pass != localStorage.pass) {
 
-                alert("Identifiant or password incorrect !");
+                alert("Email or password incorrect !");
                 gestionErreurEmail(email)
                 gestionErreurPass(pass)
             }
             else {
+                alert("logged in now")
 
-                email.innerHTML = ""
-                pass.innerHTML = ""
-                alert("bien venir admin !")
-                setInterval(() => {
-                    localStorage.setItem("loginIs", "true");
-                    location.href = '../acceuil.html';
+                setTimeout(() => {
+                    localStorage.setItem("loginIs=>", "true");
+                    location.href = 'g_disponibilites.html';
 
-                }, 300);
+                }, 10);
             }
-            
-        })
-
-
-        function gestionErreurEmail(email) {
-            /* gestion d'erreurs email*/
-
+        }
+        
+        function gestionErreurEmail(email){
             let error_email = document.querySelector(".error-messageEmail")
-            if (email === "")
-                error_email.innerHTML = "Identifiant pas encoure remplaire!"
+             if (email === "")
+                error_email.innerHTML = "Email pas encoure remplaire!"
             else if (email != localStorage.email)
-                error_email.innerHTML = "Erreur identifiant pas correct!"
+                error_email.innerHTML = "Erreur d'email pas correct!"
             else
                 error_email.style.display = 'hidden'
         }
         function gestionErreurPass(pass) {
-            /* gestion d'erreurs password*/
+            /* gestion d'erreurs*/
             let error_pass = document.querySelector(".error-messagePass")
             if (pass === "")
                 error_pass.innerHTML = "Modepass pas encoure remplaire!"
@@ -115,6 +115,10 @@
             else
                 error_pass.style.display = 'hidden'
         }
+
+
+
+
 
     </script>
 </body>

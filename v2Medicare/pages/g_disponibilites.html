@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="shortcut icon" href="../../v1Medicare/images/Medicare+.webp" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
 
@@ -19,31 +20,67 @@
                 <div class="text-gray-900 text-xl font-bold">MED <span class="font-bold text-blue-500">Care+</span>
                 </div>
             </a>
-            <nav class="row-start-2 row-end-5 grid grid-rows-5">
-                <div
-                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
-                    <i class="ri-dashboard-horizontal-fill  mx-7"></i> Dashboard</div>
-                <div
-                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
-                    <i class="ri-medicine-bottle-fill mx-7"></i> Medecins</div>
-                <div
-                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
-                    <i class="ri-test-tube-fill mx-7"></i> Specialité</div>
-                <div
-                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
-                    <i class="ri-pulse-fill hover:ri-pulse-fill mx-7"></i> Disponibilité</div>
-                <div
-                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
-                    <i class="ri-calendar-fill mx-7"></i> Rendez-vous</div>
+            <nav class="row-start-2 row-end-5 grid grid-rows-5 gap-2">
+                <label class="relative cursor-pointer">
+                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
+                    <a href="../acceuil.html"
+                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
+                        <i class="ri-dashboard-horizontal-fill mx-7"></i> Dashboard
+                </a>
+                </label>
+                <label class="relative cursor-pointer">
+                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
+                    <a href="g_medcins.html"
+                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
+                        <i class="ri-medicine-bottle-fill mx-7"></i> Médecins
+                </a>
+                </label>
+                <label class="relative cursor-pointer">
+                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
+                    <a href="g_specialites.html"
+                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
+                        <i class="ri-test-tube-fill mx-7"></i> Spécialité
+                </a>
+                </label>
+                <label class="relative cursor-pointer">
+                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
+                    <a href="g_disponibilites.html"
+                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
+                        <i class="ri-pulse-fill mx-7"></i> Disponibilité
+                </a>
+                </label>
+                <label class="relative cursor-pointer">
+                    <input type="radio" name="med" class="peer absolute [clip:rect(0_0_0_0)] [clip-path:inset(100%)]" />
+                    <a href="g_rendez-vous.html"
+                        class="flex items-center w-full h-[80%] text-base text-white bg-gray-900 rounded-lg shadow-md transition duration-500 hover:bg-white hover:text-blue-500 peer-checked:bg-[#dee7ff] peer-checked:text-[#0043ed] peer-checked:[box-shadow:0_0_0_0.0625em_#0043ed]">
+                        <i class="ri-calendar-fill mx-7"></i> Rendez-vous
+                </a>
+                </label>
             </nav>
-            <div class="relative top-10 row-start-6 row-end-7 flex text-gray-900  items-center hover:text-blue-500 cursor-pointer w-fit h-fit transition bltext-blue-500 cursor-pointer5 duration-300">
+
+            <div
+                class="logOut relative top-10 row-start-6 row-end-7 flex text-gray-900  items-center hover:text-blue-500 cursor-pointer w-fit h-fit transition bltext-blue-500 cursor-pointer5 duration-300">
                 <i class="ri-logout-circle-r-line text-3xl "></i>
                 Log Out
             </div>
         </div>
         <div id="bodySec" class="flex justify-center items-center w-full h-full ">
-            <div class="bg-white h-[90%] w-[90%] rounded-lg shadow-sm">
-                <div id="medecinCards"></div>
+               <div class="bg-white h-[90%] w-[90%] rounded-lg shadow-sm p-6 overflow-y-auto">
+
+                <h1 class="text-2xl font-bold text-gray-900 mb-6">Gérer les Disponibilités</h1>
+
+                <div class="mb-6">
+                    <label for="doctor-filter-select" class="block text-sm font-medium text-gray-700 mb-2">Veuillez choisir un medcin :</label>
+                    <select id="doctor-filter-select"
+                        class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <option value="">Veuillez attendre :</option>
+                    </select>
+                </div>
+
+                       <div id="medcinCartes" class="space-y-6">
+                </div>
+
+                   
             </div>
         </div>
     </section>
