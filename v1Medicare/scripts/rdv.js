@@ -1,9 +1,36 @@
-document.addEventListener('DOMContentLoaded', () => {
-    
-    const doctorSelect = document.getElementById('doctor');
-    const availabilityContainer = document.getElementById('availabilityContainer');
-    const daysRadioGroup = document.getElementById('daysRadioGroup');
-    const storedDoctors = localStorage.getItem('doctors');
+const dateInput = document.getElementById('date');
+const today = new Date().toISOString().split('T')[0];
+dateInput.min = today;
+const form = document.getElementById('appointmentForm');
+const inputs = form.querySelectorAll('input[required], select[required]');
+
+function getDoctors() {//v2
+    const doctors =JSON.parse(localStorage.getItem('doctors') || '[]') 
+    let docteurs = document.getElementById('doctors')
+    for (let item = 0; item < doctors.length; item++) {
+        docteurs.innerHTML += `<option value="${doctors[item].name}" class="text-center text-bold text-xl bg-gray-600 w-80"> ${doctors[item].name} - ${doctors[item].specialty}
+    </option>`;
+    }
+}
+getDoctors()
+function validateField(field) {
+
+    const doctors =JSON.parse(localStorage.getItem('doctors') || '[]')
+
+    const formGroup = field.closest('.form-group');
+    const errorMessage = formGroup.querySelector('.error-message');
+    let isValid = true;
+    let message = '';
+    switch (field.id) {
+        case 'fullName':
+            if (field.value.trim().length < 2) {
+                isValid = false;
+                message = 'Le nom doit contenir au moins 2 caractères';
+            } else if (!/^[a-zA-ZÀ-ÿ\s-]+$/.test(field.value.trim())) {
+                isValid = false;
+                message = 'Le nom ne peut contenir que des lettres';
+            }
+            break;
 
     if (storedDoctors) {
         const doctors = JSON.parse(storedDoctors);
@@ -118,30 +145,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return isValid;
     }
+    // this is form getting values
+    const formData = {
+        id: Date.now(),
+        fullName: document.getElementById('fullName').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        doctors: document.getElementById('doctors').value,
+        date: document.getElementById('date').value,
+        time: document.getElementById('time').value,
+        reason: document.getElementById('reason').value.trim(),
+        createdAt: new Date().toISOString(),
+        statusRdv: "Traitement"
+    };
+    saveAppointment(formData);
+    showModal();
+    form.reset();
+    displayAppointments();
+});
+function saveAppointment(appointment) {
+    let appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+    appointments.push(appointment);
+    localStorage.setItem('appointments', JSON.stringify(appointments));
+}
+function displayAppointments() {
+    const appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+    const container = document.getElementById('appointmentsContainer');
+    const listSection = document.getElementById('appointmentsList');
 
-    inputs.forEach(input => {
-        input.addEventListener('blur', () => validateField(input));
-        input.addEventListener('input', () => {
-            if (input.classList.contains('border-red-500')) {
-                validateField(input);
-            }
-        });
-    });
-
-    doctorSelect.addEventListener('blur', () => validateSelect(doctorSelect));
-    doctorSelect.addEventListener('change', () => validateSelect(doctorSelect));
-
-    function validateSelect(selectField) {
-        const formGroup = selectField.closest('.form-group');
-        const errorMessage = formGroup.querySelector('.error-message');
-        if (!selectField.value) {
-            errorMessage.textContent = 'Veuillez sélectionner un médecin';
-            errorMessage.classList.remove('hidden');
-            return false;
-        } else {
-            errorMessage.classList.add('hidden');
-            return true;
-        }
+    if (appointments.length === 0) {
+        listSection.classList.add('hidden');
+        return;
     }
 
     function validateDays() {
@@ -209,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function saveAppointment(appointment) {
-        let appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+        const appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
         appointments.push(appointment);
         localStorage.setItem('appointments', JSON.stringify(appointments));
     }
@@ -234,8 +268,8 @@ document.addEventListener('DOMContentLoaded', () => {
             aptCard.innerHTML = `
                     <div class="flex justify-between items-start mb-3">
                         <div>
-                            <h3 class="text-lg font-bold text-white">${apt.doctor}</h3>
-                            <p class="text-blue-400 text-sm">Jour demandé: ${apt.day}</p>
+                            <h3 class="text-lg font-bold text-white">${apt.doctors}</h3>
+                            <p class="text-blue-400 text-sm">${dateFormatted} à ${apt.time}</p>
                         </div>
                         <button onclick="deleteAppointment(${apt.id})" 
                             class="text-red-400 hover:text-red-300 transition-colors duration-300">
@@ -247,35 +281,51 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="text-gray-300 text-sm space-y-1">
                         <p><span class="text-gray-400">Patient:</span> ${apt.fullName}</p>
                         <p><span class="text-gray-400">Email:</span> ${apt.email}</p>
+                        <p><span class="text-gray-400">Jour demandé:</span> ${apt.day}</p>
                         <p><span class="text-gray-400">Téléphone:</span> ${apt.phone}</p>
                         ${apt.reason ? `<p class="mt-2"><span class="text-gray-400">Motif:</span> ${apt.reason}</p>` : ''}
-                        <p class="mt-2"><span class="text-gray-400">Status:</span> ${apt.status_rdv}</p>
+                        <td class="px-6 py-4">Status: ${apt.statusRdv}</td>
                     </div>
                     `;
 
-            container.appendChild(aptCard);
-        });
-    }
-    
-    window.deleteAppointment = function(id) {
-        if (confirm('Êtes-vous sûr de vouloir annuler ce rendez-vous ?')) {
-            let appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
-            appointments = appointments.filter(apt => apt.id !== id);
-            localStorage.setItem('appointments', JSON.stringify(appointments));
-            displayAppointments();
-        }
-    }
-    
-    function showModal() {
-        const modal = document.getElementById('successModal');
-        const modalContent = document.getElementById('modalContent');
+        container.appendChild(aptCard);
+    });
+}
 
-        modal.classList.remove('hidden');
-        modal.style.cursor = 'pointer';
-        setTimeout(() => {
-            modalContent.style.transform = 'scale(1)';
-            modalContent.style.opacity = '1';
-        }, 10);
+//<option value="Dr. Sarah Martin">Dr. Sarah Martin - Cardiologue</option>
+function deleteAppointment(id) {
+    if (confirm('Êtes-vous sûr de vouloir annuler ce rendez-vous ?')) {
+        let appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+        appointments = appointments.filter(apt => apt.id !== id);
+        localStorage.setItem('appointments', JSON.stringify(appointments));
+        displayAppointments();
+    }
+}
+function showModal() {
+    const modal = document.getElementById('successModal');
+    const modalContent = document.getElementById('modalContent');
+
+    modal.classList.remove('hidden');
+    modal.style.cursor = 'pointer';
+    setTimeout(() => {
+        modalContent.style.transform = 'scale(1)';
+        modalContent.style.opacity = '1';
+    }, 10);
+}
+function closeModal() {
+    const modal = document.getElementById('successModal');
+    const modalContent = document.getElementById('modalContent');
+
+    modalContent.style.transform = 'scale(0.95)';
+    modalContent.style.opacity = '0';
+
+    setTimeout(() => {
+        modal.classList.add('hidden');
+    },10);
+}
+document.getElementById('successModal').addEventListener('click', function (e) {
+    if (e.target === this) {
+        closeModal();
     }
     
     window.closeModal = function() {
