@@ -161,3 +161,18 @@ function addToastStyles() {
     `;
     document.head.appendChild(style);
 }
+
+function updateTime() {
+    const clockElement = document.getElementById("montre");
+    const now = new Date();
+ 
+    const options = { weekday: 'long' };
+    
+    const dayString = now.toLocaleDateString('fr-FR', options);
+    
+    clockElement.textContent = dayString;
+}
+
+window.onload = function() {
+    updateTime();
+};
