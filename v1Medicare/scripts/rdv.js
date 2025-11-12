@@ -32,81 +32,118 @@ function validateField(field) {
             }
             break;
 
-        case 'email':
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(field.value.trim())) {
-                isValid = false;
-                message = 'Veuillez entrer une adresse email valide';
-            }
-            break;
-
-        case 'phone':
-            const phoneRegex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
-            if (!phoneRegex.test(field.value.trim())) {
-                isValid = false;
-                message = 'Veuillez entrer un numéro de téléphone valide';
-            }
-            break;
-
-        case 'doctor':
-            if (!field.value) {
-                isValid = false;
-                message = 'Veuillez sélectionner un médecin';
-            }
-            break;
-
-        case 'date':
-            const selectedDate = new Date(field.value + 'T00:00:00');
-            const todayDate = new Date();
-            todayDate.setHours(0, 0, 0, 0);
-            if (!field.value) {
-                isValid = false;
-                message = 'Veuillez sélectionner une date';
-            } else if (selectedDate < todayDate) {
-                isValid = false;
-                message = 'La date ne peut pas être dans le passé';
-            }
-            break;
-
-        case 'time':
-            if (!field.value) {
-                isValid = false;
-                message = 'Veuillez sélectionner une heure';
-            }
-            break;
-    }
-    if (!isValid) {
-        field.classList.remove('border-gray-600');
-        field.classList.add('border-red-500');
-        errorMessage.textContent = message;
-        errorMessage.classList.remove('hidden');
+    if (storedDoctors) {
+        const doctors = JSON.parse(storedDoctors);
+        doctors.forEach(doctor => {
+            const option = document.createElement('option');
+            option.value = doctor.id;
+            option.textContent = `${doctor.name} - ${doctor.specialty}`;
+            option.classList.add('text-black');
+            doctorSelect.appendChild(option);
+        });
     } else {
-        field.classList.remove('border-red-500');
-        field.classList.add('border-gray-600');
-        errorMessage.classList.add('hidden');
+        console.error('Mal9inach "doctors" f localStorage.');
+        const errorOption = document.createElement('option');
+        errorOption.textContent = 'Erreur: Liste des médecins non trouvée';
+        errorOption.disabled = true;
+        doctorSelect.appendChild(errorOption);
     }
 
-    return isValid;
-}
-inputs.forEach(input => {
-    input.addEventListener('blur', () => validateField(input));
-    input.addEventListener('input', () => {
-        if (input.classList.contains('border-red-500')) {
-            validateField(input);
+    doctorSelect.addEventListener('change', () => {
+        const selectedDoctorId = doctorSelect.value;
+        
+        daysRadioGroup.innerHTML = ''; 
+        availabilityContainer.classList.add('hidden');
+        
+        if (!selectedDoctorId) {
+            return;
         }
-    });
-});
-form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    let isFormValid = true;
-    inputs.forEach(input => {
-        if (!validateField(input)) {
-            isFormValid = false;
+
+        const availabilityKey = `availability_${selectedDoctorId}`;
+        const availableDays = JSON.parse(localStorage.getItem(availabilityKey) || '[]');
+        
+        const errorMsg = availabilityContainer.querySelector('.error-message');
+
+        if (availableDays.length > 0) {
+            availableDays.forEach((day, index) => {
+                const radioWrapper = document.createElement('div');
+                radioWrapper.className = 'flex items-center';
+
+                const radioInput = document.createElement('input');
+                radioInput.type = 'radio';
+                radioInput.id = `day_${index}`;
+                radioInput.name = 'appointmentDay';
+                radioInput.value = day;
+                radioInput.required = true; 
+                radioInput.className = 'w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 focus:ring-blue-500';
+
+                const radioLabel = document.createElement('label');
+                radioLabel.htmlFor = `day_${index}`;
+                radioLabel.textContent = day;
+                radioLabel.className = 'ml-2 text-sm font-medium text-gray-300';
+
+                radioWrapper.appendChild(radioInput);
+                radioWrapper.appendChild(radioLabel);
+                daysRadioGroup.appendChild(radioWrapper);
+            });
+            
+            availabilityContainer.classList.remove('hidden');
+            errorMsg.classList.add('hidden');
+
+        } else {
+            errorMsg.textContent = "Ce médecin n'a pas de disponibilités pour le moment.";
+            errorMsg.classList.remove('hidden');
+            availabilityContainer.classList.remove('hidden'); 
         }
     });
 
-    if (!isFormValid) {
-        return;
+    const form = document.getElementById('appointmentForm');
+    const inputs = form.querySelectorAll('input[required]'); 
+
+    function validateField(field) {
+        const formGroup = field.closest('.form-group');
+        const errorMessage = formGroup.querySelector('.error-message');
+        let isValid = true;
+        let message = '';
+        switch (field.id) {
+            case 'fullName':
+                if (field.value.trim().length < 2) {
+                    isValid = false;
+                    message = 'Le nom doit contenir au moins 2 caractères';
+                } else if (!/^[a-zA-ZÀ-ÿ\s-]+$/.test(field.value.trim())) {
+                    isValid = false;
+                    message = 'Le nom ne peut contenir que des lettres';
+                }
+                break;
+
+            case 'email':
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(field.value.trim())) {
+                    isValid = false;
+                    message = 'Veuillez entrer une adresse email valide';
+                }
+                break;
+
+            case 'phone':
+                const phoneRegex = /^(06|07|05)\d{8}$/;
+                if (!phoneRegex.test(field.value.trim())) {
+                    isValid = false;
+                    message = 'Format valide: 0612345678 (10 chiffres)';
+                }
+                break;
+        }
+        if (!isValid) {
+            field.classList.remove('border-gray-600');
+            field.classList.add('border-red-500');
+            errorMessage.textContent = message;
+            errorMessage.classList.remove('hidden');
+        } else {
+            field.classList.remove('border-red-500');
+            field.classList.add('border-gray-600');
+            errorMessage.classList.add('hidden');
+        }
+
+        return isValid;
     }
     // this is form getting values
     const formData = {
@@ -141,21 +178,94 @@ function displayAppointments() {
         return;
     }
 
-    listSection.classList.remove('hidden');
-    container.innerHTML = '';
+    function validateDays() {
+        const formGroup = availabilityContainer.closest('.form-group');
+        const errorMessage = formGroup.querySelector('.error-message');
+        const checkedDay = daysRadioGroup.querySelector('input[name="appointmentDay"]:checked');
+        
+        if (availabilityContainer.classList.contains('hidden') || !doctorSelect.value) {
+             errorMessage.classList.add('hidden');
+             return true; 
+        }
 
-    appointments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(apt => {
-        const aptCard = document.createElement('div');
-        aptCard.className = 'bg-gray-800/50 backdrop-blur-lg rounded-2xl p-6 border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300';
+        if (!checkedDay) {
+            errorMessage.textContent = 'Veuillez sélectionner un jour';
+            errorMessage.classList.remove('hidden');
+            return false;
+        } else {
+            errorMessage.classList.add('hidden');
+            return true;
+        }
+    }
+    daysRadioGroup.addEventListener('change', validateDays);
 
-        const dateFormatted = new Date(apt.date).toLocaleDateString('fr-FR', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        
+        let isFormValid = true;
+        inputs.forEach(input => {
+            if (!validateField(input)) {
+                isFormValid = false;
+            }
         });
+        
+        if (!validateSelect(doctorSelect)) isFormValid = false;
+        if (!validateDays()) isFormValid = false;
+        
+        if (!isFormValid) {
+            return;
+        }
+        
+        const selectedDay = daysRadioGroup.querySelector('input[name="appointmentDay"]:checked').value;
+        const selectedDoctorName = doctorSelect.options[doctorSelect.selectedIndex].text;
 
-        aptCard.innerHTML = `
+        const formData = {
+            id: Date.now(),
+            fullName: document.getElementById('fullName').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            phone: document.getElementById('phone').value.trim(),
+            doctor: selectedDoctorName,
+            day: selectedDay,
+            reason: document.getElementById('reason').value.trim(),
+            createdAt: new Date().toISOString(),
+            status_rdv: "Traitement"
+        };
+        
+        saveAppointment(formData);
+        showModal();
+        form.reset();
+        
+        availabilityContainer.classList.add('hidden');
+        daysRadioGroup.innerHTML = '';
+        
+        displayAppointments();
+    });
+
+    function saveAppointment(appointment) {
+        const appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+        appointments.push(appointment);
+        localStorage.setItem('appointments', JSON.stringify(appointments));
+    }
+    
+    function displayAppointments() {
+        const appointments = JSON.parse(localStorage.appointments || '[]');
+        const container = document.getElementById('appointmentsContainer');
+        const listSection = document.getElementById('appointmentsList');
+
+        if (appointments.length === 0) {
+            listSection.classList.add('hidden');
+            return;
+        }
+
+        listSection.classList.remove('hidden');
+        container.innerHTML = '';
+
+        appointments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(apt => {
+            const aptCard = document.createElement('div');
+            aptCard.className = 'bg-gray-800/50 backdrop-blur-lg rounded-2xl p-6 border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300';
+            
+            aptCard.innerHTML = `
                     <div class="flex justify-between items-start mb-3">
                         <div>
                             <h3 class="text-lg font-bold text-white">${apt.doctors}</h3>
@@ -171,11 +281,12 @@ function displayAppointments() {
                     <div class="text-gray-300 text-sm space-y-1">
                         <p><span class="text-gray-400">Patient:</span> ${apt.fullName}</p>
                         <p><span class="text-gray-400">Email:</span> ${apt.email}</p>
+                        <p><span class="text-gray-400">Jour demandé:</span> ${apt.day}</p>
                         <p><span class="text-gray-400">Téléphone:</span> ${apt.phone}</p>
                         ${apt.reason ? `<p class="mt-2"><span class="text-gray-400">Motif:</span> ${apt.reason}</p>` : ''}
                         <td class="px-6 py-4">Status: ${apt.statusRdv}</td>
                     </div>
-                `;
+                    `;
 
         container.appendChild(aptCard);
     });
@@ -216,5 +327,25 @@ document.getElementById('successModal').addEventListener('click', function (e) {
     if (e.target === this) {
         closeModal();
     }
+    
+    window.closeModal = function() {
+        const modal = document.getElementById('successModal');
+        const modalContent = document.getElementById('modalContent');
+
+        modalContent.style.transform = 'scale(0.95)';
+        modalContent.style.opacity = '0';
+
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 100);
+    }
+    
+    document.getElementById('successModal').addEventListener('click', function (e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+    
+    displayAppointments();
+
 });
-displayAppointments();
