@@ -86,7 +86,7 @@
                 alert("bien venir admin !")
                 setInterval(() => {
                     localStorage.setItem("loginIs", "true");
-                    location.href = '../acceuil.html';
+                    location.href = 'pages/acceuil.html';
 
                 }, 300);
             }
@@ -95,7 +95,6 @@
 
 
         function gestionErreurEmail(email) {
-            /* gestion d'erreurs email*/
 
             let error_email = document.querySelector(".error-messageEmail")
             if (email === "")
