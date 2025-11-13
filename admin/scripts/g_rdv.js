@@ -1,5 +1,101 @@
 //------------------------------------------------------- Rendez-vous V2 ----------------------------------------------------------------
+document.querySelector('.bd').innerHTML = `
+ <section class="bg-gray-900 w-[100vw] h-[100vh] flex">
+        <div class="bg-gray-300 grid grid-flow-col grid-rows-6 w-[300px] h-full px-4 ">
+            <a class="row-span-1 w-full h-full  flex justify-center items-center" href="index.html">
+                <div class="text-gray-900 text-xl font-bold">MED <span class="font-bold text-blue-500">Care+</span>
+                </div>
+            </a>
+            <nav class="row-start-2 row-end-5 grid grid-rows-5">
+                <a href="acceuil.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-dashboard-horizontal-fill  mx-7"></i> Dashboard
+                </a>
+                <a href="g_medcins.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-medicine-bottle-fill mx-7"></i> Medecins
+                </a>
+                <a href="g_specialites.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-test-tube-fill mx-7"></i> Specialité
+                </a>
+                <a href="g_disponibilites.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-pulse-fill hover:ri-pulse-fill mx-7"></i> Disponibilité
+                </a>
+                <a href="g_rendez-vous.html"
+                    class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
+                    <i class="ri-calendar-fill mx-7"></i> Rendez-vous
+                </a>
+            </nav>
+            <a href="../login.html"
+                class="relative top-10 row-start-6 row-end-7 flex text-gray-900  items-center hover:text-blue-500 cursor-pointer w-fit h-fit transition bltext-blue-500 cursor-pointer5 duration-300">
+                <i class="ri-logout-circle-r-line text-3xl "></i>
+                Log Out
+            </a>
+        </div>
 
+
+        <div id="bodySec" class="flex justify-center items-start w-full bg-gray-900 h-full p-6 overflow-auto">
+            <div class="bg-gray-400 h-[90%] w-[95%] rounded-lg shadow-sm">
+                <!------------------- Section maipulation data RDV ----------------------------------------->
+                <div class="@container p-4 ">
+                    <div class="flex flex-col lg:flex-row gap-4 mb-6 text-4xl md:text-5xl text-blue-900">
+                        <div class="flex flex-col gap-2 ">
+                            <div class="text-center text-3xl w-full h-20 bg-indigo-100 border border-indigo-200 rounded-xl p-6 animate-fade-in">+Rendez-vous</div>
+                            <div class="flex-1 bg-indigo-100 border border-indigo-200 rounded-xl p-2 pl-4 animate-fade-in">
+                                <h2>
+                                    Bonjour <br><strong>Mme secretaire</strong>
+                                </h2>
+                                <span id="montre"
+                                    class="inline-block mt-8 px-8 py-2 rounded-full text-xl font-bold text-white bg-indigo-800">
+
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <div class="relative overflow-x-auto">
+                            <table class="w-full text-sm text-left rtl:text-right text-gray-500 rounded-2xl overflow-hidden">
+                                <thead class="text-lg text-gray-700 bg-blue-300 w-full h-20 uppercase shadow-md">
+                                    <tr class="shadow-md">
+                                        <th class="pl-4 pr-2 py-4">
+                                            <p class="flex items-center justify-between h-full px-4 py-4">
+
+                                                Doctor
+                                                <button class="disponible border w-10 h-10 rounded-full bg-center bg-no-repeat bg-[url('../../images/list.png')] duration-500 transition-all relative"></button>
+                                            </p>
+                                        </th>
+                                        <th scope="col" class="pr-2 pl-4 py-4">
+                                            Patient
+                                        </th>
+                                        <th scope="col" class=" pr-2 pl-4 py-4">
+                                            Jour
+                                        </th>
+                                        <th class="pl-4 pr-2 py-4">
+                                            <p
+                                                class="flex items-center justify-between w-full h-full px-1  py-2">
+                                                <img src="../../images/list.png" alt="accept rendez-vous"
+                                                    class="acceptRdvBtn w-8 h-8 bg-green-400 rounded-full duration-500 transition-all cursor-pointer">
+                                                Status
+                                                <img src="../../images/list.png" alt="refuse rendez-vous"
+                                                    class="refuseRdvBtn w-8 h-8 rounded-full bg-red-500 duration-500 transition-all cursor-pointer">
+                                            </p>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody">
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+`
 // function listRendezVous() {
 
 //     if (!list_Rendez_Vous) return;
@@ -39,6 +135,7 @@ red.addEventListener('click', () => {
 
 
 let listDisponibilite = document.querySelector('.disponible')
+listDisponibilite.dataset.name = 'disponibilite'
 listDisponibilite.addEventListener('click', () => {
     listDisponibilite.innerHTML = `
 <div class="statusDispoDoctor w-48 text-blue-950 absolute top-1 -left-10 bg-gray-400 border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">

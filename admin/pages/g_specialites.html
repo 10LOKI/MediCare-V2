@@ -45,7 +45,7 @@
                     <i class="ri-calendar-fill mx-7"></i> Rendez-vous
 </a>
             </nav>
-            <a href="loginPage.html"
+            <a href="../login.html"
                 class="relative top-10 row-start-6 row-end-7 flex text-gray-900  items-center hover:text-blue-500 cursor-pointer w-fit h-fit transition bltext-blue-500 cursor-pointer5 duration-300">
                 <i class="ri-logout-circle-r-line text-3xl "></i>
                 Log Out
@@ -95,7 +95,15 @@
 
     </section>
     <script>
+        let connection = JSON.parse(localStorage.getItem('loginIs'))
+        if (connection) {
 
+                return true
+            }
+            else {
+                location.href = '../../login.html';
+
+            }
         const input = document.getElementById('input-txt')
         const btnTxt = document.getElementById('btn-txt')
         const containerTxt = document.getElementById('sp-txt')
