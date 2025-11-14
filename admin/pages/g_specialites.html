@@ -17,57 +17,86 @@
 
 <body>
     <section class="bg-gray-900 w-[100vw] h-[100vh] flex overflow-x-hidden">
-         <div class="bg-slate-100 grid grid-flow-col grid-rows-6 w-[300px] h-full px-4 ">
+        <div class="bg-slate-100 grid grid-flow-col grid-rows-6 w-[300px] h-full px-4 ">
             <a class="row-span-1 w-full h-full  flex justify-center items-center" href="index.html">
                 <div class="text-gray-900 text-xl font-bold">MED <span class="font-bold text-blue-500">Care+</span>
                 </div>
             </a>
             <nav class="row-start-2 row-end-5 grid grid-rows-5">
-                <a href="../acceuil.html"
+                <a href="acceuil.html"
                     class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
                     <i class="ri-dashboard-horizontal-fill  mx-7"></i> Dashboard
-            </a>
+                </a>
                 <a href="g_medcins.html"
                     class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
                     <i class="ri-medicine-bottle-fill mx-7"></i> Medecins
-        </a>
+                </a>
                 <a href="g_specialites.html"
                     class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
                     <i class="ri-test-tube-fill mx-7"></i> Specialité
-    </a>
+                </a>
                 <a href="g_disponibilites.html"
                     class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
                     <i class="ri-pulse-fill mx-7"></i> Disponibilité
-</a>
+                </a>
                 <a href="g_rendez-vous.html"
                     class="w-full  h-[80%] text-white flex items-center  text-base bg-gray-900 hover:border-solid rounded-lg hover:text-blue-500 cursor-pointer hover:bg-white hover:rounded-lg shadow-md transition duration-500">
                     <i class="ri-calendar-fill mx-7"></i> Rendez-vous
-</a>
+                </a>
             </nav>
             <a href="loginPage.html"
                 class="relative top-10 row-start-6 row-end-7 flex text-gray-900  items-center hover:text-blue-500 cursor-pointer w-fit h-fit transition bltext-blue-500 cursor-pointer5 duration-300">
                 <i class="ri-logout-circle-r-line text-3xl "></i>
                 Log Out
-        </a>
+            </a>
         </div>
         <div id="bodySec" class="flex justify-center items-center w-full h-full">
             <div class="bg-white h-[90%] w-[90%] rounded-lg shadow-sm flex flex-col p-6">
-                <div class="flex h-1/3 w-full">
+                <div class="flex h-1/3 w-full items-center bg-[#aeaeff] mb-[10px] p-[10px] rounded-[8px]">
                     <div class="w-[30%] h-[80%]">
-                        <div
-                            class="inline-grid shadow-md bg-[#111] text-white rounded-xl border border-gray-500  p-4 w-full h-full">
+                        <div class="inline-grid shadow-md bg-[#fff] text-white rounded-xl border  p-4 w-full h-full">
                             <div id="cmpt" class="inline-grid w-full grid-cols-1 gap-x-4 px-6 py-4">
-                                <div class="text-gray-400 text-sm">Total de spécialités </div>
+                                <div class="inline-grid text-sm text-gray-500">Total de spécialités </div>
                                 <div id="ttl"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="w-full h-[80%] pl-10">
-                        <div
-                            class="inline-grid shadow-md  bg-[#fff]  text-white rounded-xl border border-gray-500  p-4 w-full h-full">
-                            <div id="cmpt" class="inline-grid w-full grid-cols-1 gap-x-4 px-6 py-4">
-                                <div class="text-gray-400 text-sm">Total de spécialités </div>
-                                <div> </div>
+                    <div class="w-fit h-[80%] pl-10 ">
+                        <div class="inline-grid shadow-xl  bg-gray-600  text-white rounded-xl p-4 w-full h-full">
+                            <div class="grid items-center  justify-items-center  text-sm h-full"> <span id="montre2"
+                                    class=" text-3xl font-bold text-white shadow-2xl ">
+
+                                </span>
+                                <span id="montre" class=" text-sm font-bold text-gray-400">
+
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="w-full h-[80%] pl-10 ">
+                        <div class="  bg-gray-900  text-white rounded-xl p-4 w-full h-full">
+                            <div class="flex flex-wrap justify-center items-center  text-gray-900 text-sm">
+                                <div data-sug="Cardiologie" class="sug bg-white p-2 m-2 rounded-lg cursor-pointer">
+                                    Cardiologie</div>
+                                <div  data-sug="Dermatologie" class="sug bg-white p-2 m-2 rounded-lg cursor-pointer">
+                                    Dermatologie</div>
+                                <div  data-sug="Pédiatrie" class="sug bg-white p-2 m-2 rounded-lg cursor-pointer">
+                                    Pédiatrie</div>
+                                <div  data-sug="Neurologie" class="sug bg-white p-2 m-2 rounded-lg cursor-pointer">
+                                    Neurologie</div>
+                                <div  data-sug="Gynécologie" class="sug bg-white p-2 m-2 rounded-lg cursor-pointer">
+                                    Ophtalmologie</div>
+                                <div  data-sug="Ophtalmologie" class="sug bg-white p-2 m-2 rounded-lg cursor-pointer">
+                                    Ophtalmologie</div>
+                                <div  data-sug="generalist" class="sug bg-white p-2 m-2 rounded-lg cursor-pointer">ORL
+                                </div>
+                                <div  data-sug="Orthopédie" class="sug bg-white p-2 m-2 rounded-lg cursor-pointer">
+                                    Orthopédie</div>
+                                <div  class="sug bg-white p-2 m-2 rounded-lg cursor-pointer">
+                                    Gastroentérologie</div>
+                                <div  data-sug="Gastroentérologie"  class="sug bg-white p-2 m-2 rounded-lg cursor-pointer">
+                                    Psychiatrie</div>
                             </div>
                         </div>
                     </div>
@@ -81,8 +110,8 @@
                                 <input id="input-txt" type="text" placeholder="Veuillez saisir un specialté ..."
                                     class="text-black border-2 border-white focus:outline-none h-10 bg-white rounded-[10px] px-[30px] py-[10px] w-[80%] active:shadow-[inset_2px_2px_15px_#8707ff]" />
                             </div>
-                            <button id="btn-txt" onclick="ajouteSpec()"
-                                class="w-20 h-10 text-center text-white rounded-2xl bg-green-600 ml-10">Ajouté
+                            <button id="btn-txt"
+                                class=" w-20 h-10 text-center text-white rounded-2xl bg-green-600 ml-10">Ajouté
                             </button>
                         </div>
                         <div id="sp-txt"
@@ -100,8 +129,10 @@
         const containerTxt = document.getElementById('sp-txt')
         const container = document.getElementById('container')
         const ttl = document.getElementById("ttl")
+        const sug = document.querySelectorAll(".sug")
         let specialte = JSON.parse(localStorage.getItem('specialties')) || []
         let doctors = JSON.parse(localStorage.getItem('doctors')) || []
+        let editIndex = null;
         fetch('../scripts/Doctors-v2.json')
             .then((response) => response.json())
             .then((data) => {
@@ -114,14 +145,30 @@
                     localStorage.setItem('doctors', JSON.stringify(doctors));
                 }
 
-                renderSpec()
+                renderSpec(specialte)
                 compteur()
             })
+
+        // function suggection() {
+        //  input.value = e.textContent)
+            sug.forEach((btnSug) => {
+
+                btnSug.addEventListener("click",(btn)=>{
+                    console.log("btnSug",(btn.target.dataset.sug))
+                    input.value = btn.target.dataset.sug
+                })
+
+            })
+
+            
+        // }
+
         function ajouteSpec() {
             if (input.value.trim() === '') {
                 alert('Veuillez entrer une spécialité')
                 return
             }
+
 
             const text = input.value.trim()
             specialte.push(text)
@@ -131,12 +178,27 @@
             compteur()
 
         }
+
+        function updateTime() {
+            const clockElement = document.getElementById("montre");
+            const clockElement2 = document.getElementById("montre2");
+            const now = new Date();
+            const dateString = now.toLocaleDateString();
+            const timeString = now.toLocaleTimeString();
+            clockElement.textContent = dateString;
+            clockElement2.textContent = timeString;
+        }
+
+        window.onload = function () {
+            updateTime();
+            setInterval(updateTime, 1000);
+        };
         function renderSpec() {
             containerTxt.innerHTML = ''
             specialte.forEach((specialte, index) => {
 
                 const isUsed = doctors.some(doc => doc.specialty === specialte);
-                console.log("isUsed",isUsed)
+                console.log("isUsed", isUsed)
                 const specDiv = document.createElement('div')
                 specDiv.className = 'w-fit h-10 flex justify-between items-center bg-blue-500 rounded-lg p-3 mb-2 mx-3 hover:bg-blue-900 transition-colors duration-200'
 
@@ -148,29 +210,76 @@
                 specText.textContent = specialte
 
                 const deleteBtn = document.createElement('i')
+                const editBtn = document.createElement('i')
                 if (isUsed) {
-                    deleteBtn.classList.add('ri-close-line','text-gray-400', 'cursor-not-allowed','ml-5');
+                    deleteBtn.classList.add('ri-close-line', 'text-gray-400', 'cursor-not-allowed', 'ml-5');
                     deleteBtn.disabled = true;
+                    editBtn.classList.add('ri-pencil-line', 'text-gray-400', 'cursor-not-allowed', 'ml-5');
+                    editBtn.disabled = true;
                 } else {
-                    deleteBtn.classList.add('ri-close-line','text-gray-900', 'hover:text-red-700','ml-5','cursor-pointer');
+                    deleteBtn.classList.add('ri-close-line', 'text-gray-900', 'hover:text-red-700', 'ml-5', 'cursor-pointer');
+                    editBtn.classList.add('ri-pencil-line', 'text-gray-900', 'hover:text-red-700', 'ml-5', 'cursor-pointer');
                     deleteBtn.onclick = () => popupSwt(index);
+                    editBtn.onclick = () => edit(index);
                 }
 
                 specDiv.appendChild(iconTag)
                 specDiv.appendChild(specText)
                 specDiv.appendChild(deleteBtn)
+                specDiv.appendChild(editBtn)
                 containerTxt.appendChild(specDiv)
             })
         }
         input.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                ajouteSpec()
+                if (btnTxt.textContent.toLowerCase() === "modifier") {
+                    remplace();
+                } else {
+                    ajouteSpec();
+                }
             }
         })
+
+
+        function edit(index) {
+            input.value = specialte[index];
+            btnTxt.textContent = "Modifier";
+            editIndex = index;
+        }
+
+        function remplace() {
+            let newValue = input.value.trim();
+
+            if (newValue === "") {
+                alert("Veuillez entrer une spécialité");
+                return;
+            }
+
+            if (editIndex !== null) {
+                specialte[editIndex] = newValue;
+                editIndex = null;
+                btnTxt.textContent = "Ajouter";
+            } else {
+                specialte.push(newValue);
+            }
+
+            input.value = "";
+            localStorage.setItem("specialties", JSON.stringify(specialte));
+            renderSpec();
+            compteur();
+        }
+        btnTxt.addEventListener("click", () => {
+            if (btnTxt.textContent.toLowerCase() === "modifier") {
+                remplace();
+            } else {
+                ajouteSpec();
+            }
+        });
+
         function compteur() {
             let cmpt = specialte.length
             console.log("compt", cmpt)
-            ttl.className = "text-4xl font-extrabold leading-tight "
+            ttl.className = "text-4xl text-gray-800 font-extrabold leading-tight "
             ttl.textContent = cmpt
         }
         function popupSwt(index) {
@@ -212,7 +321,6 @@
             });
 
         }
-
     </script>
 </body>
 
